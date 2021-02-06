@@ -1,0 +1,17 @@
+DROP DATABASE IF EXISTS WebStorage;
+
+CREATE DATABASE WebStorage
+    CHARACTER SET utf8
+    COLLATE utf8_general_ci;
+
+USE WebStorage;
+
+DROP TABLE IF EXISTS User;
+CREATE TABLE User (
+    ID INT NOT NULL,
+    NAME varchar(120) NOT NULL,
+    USER_NAME varchar(120) NOT NULL,
+    EMAIL varchar(120) NOT NULL,
+    REGISTRATION datetime NOT NULL,
+    PRIMARY KEY (ID)
+);
