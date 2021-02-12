@@ -93,24 +93,59 @@ CREATE TABLE Domain(
 
 DROP TABLE IF EXISTS Bill;
 CREATE TABLE Bill(
-    ID INT NOT NULL,
-    PRIMARY KEY (ID)
+    Id int NOT NULL,
+    UserId int NOT NULL,
+    StorageId int NULL,
+    DomainId int NULL,
+    Date datetime NOT NULL DEFAULT NOW(),
+    Deadline datetime NOT NULL DEFAULT DATE_ADD(NOW(), INTERVAL 1 MONTH),
+    Cost decimal NOT NULL,
+    BillId varchar(100) NOT NULL,
+    PRIMARY KEY (Id),
+    UNIQUE KEY (BillId),
+    FOREIGN KEY (UserId) REFERENCES User(Id),
+    FOREIGN KEY (StorageId) REFERENCES Storage(Id),
+    FOREIGN KEY (DomainId) REFERENCES Domain(Id)
 );
 
 DROP TABLE IF EXISTS Payment;
 CREATE TABLE Payment(
-    ID INT NOT NULL,
-    PRIMARY KEY (ID)
+    Id int NOT NULL,
+    UserId int NOT NULL,
+    Date datetime NOT NULL DEFAULT NOW(),
+    TransactionId varchar(100) NOT NULL,
+    BillId int NOT NULL,
+    PRIMARY KEY (Id),
+    UNIQUE KEY (TransactionId),
+    FOREIGN KEY (UserId) REFERENCES User(Id),
+    FOREIGN KEY (BillId) REFERENCES Bill(Id)
 );
 
 DROP TABLE IF EXISTS Statistic;
 CREATE TABLE Statistic(
-    ID INT NOT NULL,
-    PRIMARY KEY (ID)
+    Id int NOT NULL,
+    DomainId int NOT NULL,
+    Month DATE NOT NULL,
+    Views int NOT NULL DEFAULT 0,
+    UniqueViewers int NOT NULL DEFAULT 0,
+    PRIMARY KEY (Id),
+    UNIQUE KEY (DomainId, Month),
+    FOREIGN KEY (DomainId) REFERENCES Domain(Id)
 );
 
 DROP TABLE IF EXISTS Notification;
 CREATE TABLE Notification(
-    ID INT NOT NULL,
-    PRIMARY KEY (ID)
+    Id int NOT NULL,
+    UserId int NOT NULL,
+    StorageId int NULL,
+    DomainId int NULL,
+    Creation datetime NOT NULL DEFAULT NOW(),
+    TimeFrameStart datetime NULL,
+    TimeFrameEnd datetime NULL,
+    Title varchar(100) NOT NULL,
+    Message longtext NOT NULL,
+    PRIMARY KEY (Id),
+    FOREIGN KEY (UserId) REFERENCES User(Id),
+    FOREIGN KEY (StorageId) REFERENCES Storage(Id),
+    FOREIGN KEY (DomainId) REFERENCES Domain(Id)
 );
