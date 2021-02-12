@@ -110,7 +110,7 @@
 - 1 tábla (min. 4 db)
   - A felhasználó számára elérhető Domain címek (Nem használtak)
   - havi / évi statisztika az egyes domainekhez és/vagy felhasználókhoz (`*`)
-  - Data centers listája
+  - Data centers listája név alapján ASC rendezve és város szám füzött kóddal
   - Tárhely típusok listája ahol van php
   - Legtöbbet használt névszerverek (Csökkenő sorrendben)
 - 2 tábla (min. 6 db)

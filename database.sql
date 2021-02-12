@@ -8,7 +8,7 @@ USE WebStorage;
 
 DROP TABLE IF EXISTS User;
 CREATE TABLE User (
-    Id int NOT NULL,
+    Id int NOT NULL AUTO_INCREMENT,
     FullName varchar(60) NOT NULL,
     UserName varchar(30) NOT NULL,
     Email varchar(120) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE User (
 
 DROP TABLE IF EXISTS StorageType;
 CREATE TABLE StorageType(
-    Id int NOT NULL,
+    Id int NOT NULL AUTO_INCREMENT,
     SSHEnabled boolean NOT NULL DEFAULT false,
     PHPEnabled boolean NOT NULL DEFAULT false,
     MaximumEmailAccounts int NULL,
@@ -39,7 +39,7 @@ CREATE TABLE StorageType(
 
 DROP TABLE IF EXISTS DataCenter;
 CREATE TABLE DataCenter(
-    Id int NOT NULL,
+    Id int NOT NULL AUTO_INCREMENT,
     Name varchar(30) NOT NULL,
     City varchar(80) NOT NULL,
     Number int NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE DataCenter(
 
 DROP TABLE IF EXISTS Storage;
 CREATE TABLE Storage(
-    Id int NOT NULL,
+    Id int NOT NULL AUTO_INCREMENT,
     UserId int NOT NULL,
     Creation datetime NOT NULL DEFAULT NOW(),
     Expiration datetime NOT NULL DEFAULT DATE_ADD(NOW(), INTERVAL 1 YEAR),
@@ -73,7 +73,7 @@ CREATE TABLE Storage(
 
 DROP TABLE IF EXISTS Domain;
 CREATE TABLE Domain(
-    Id int NOT NULL,
+    Id int NOT NULL AUTO_INCREMENT,
     UserId int NOT NULL,
     DomainAddress varchar(100) NOT NULL,
     StorageId int NULL,
@@ -93,7 +93,7 @@ CREATE TABLE Domain(
 
 DROP TABLE IF EXISTS Bill;
 CREATE TABLE Bill(
-    Id int NOT NULL,
+    Id int NOT NULL AUTO_INCREMENT,
     UserId int NOT NULL,
     StorageId int NULL,
     DomainId int NULL,
@@ -110,7 +110,7 @@ CREATE TABLE Bill(
 
 DROP TABLE IF EXISTS Payment;
 CREATE TABLE Payment(
-    Id int NOT NULL,
+    Id int NOT NULL AUTO_INCREMENT,
     UserId int NOT NULL,
     Date datetime NOT NULL DEFAULT NOW(),
     TransactionId varchar(100) NOT NULL,
@@ -123,7 +123,7 @@ CREATE TABLE Payment(
 
 DROP TABLE IF EXISTS Statistic;
 CREATE TABLE Statistic(
-    Id int NOT NULL,
+    Id int NOT NULL AUTO_INCREMENT,
     DomainId int NOT NULL,
     Month DATE NOT NULL,
     Views int NOT NULL DEFAULT 0,
@@ -135,7 +135,7 @@ CREATE TABLE Statistic(
 
 DROP TABLE IF EXISTS Notification;
 CREATE TABLE Notification(
-    Id int NOT NULL,
+    Id int NOT NULL AUTO_INCREMENT,
     UserId int NOT NULL,
     StorageId int NULL,
     DomainId int NULL,
