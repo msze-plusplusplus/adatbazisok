@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.SCHEMA:WebStorage</OriginalElement>
+  <nodes>
+    <node x="0.0" y="1530.0">45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Payment</node>
+    <node x="365.5" y="417.0">45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Storage</node>
+    <node x="282.87017543859656" y="824.0">45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Domain</node>
+    <node x="120.37017543859653" y="1217.5">45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Bill</node>
+    <node x="306.37017543859656" y="1258.0">45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Statistic</node>
+    <node x="109.35000000000002" y="54.0">45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.User</node>
+    <node x="575.35" y="0.0">45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.StorageType</node>
+    <node x="347.35" y="81.0">45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.DataCenter</node>
+    <node x="523.3701754385966" y="1204.0">45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Notification</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Bill" target="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Domain">
+      <point x="55.33333333333337" y="-124.5" />
+      <point x="258.70350877192993" y="1179.0" />
+      <point x="323.5368421052632" y="1179.0" />
+      <point x="-81.33333333333331" y="165.0" />
+    </edge>
+    <edge source="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Notification" target="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Storage">
+      <point x="0.0" y="-138.0" />
+      <point x="633.8701754385966" y="1179.0" />
+      <point x="654.2666666666667" y="1179.0" />
+      <point x="654.2666666666667" y="804.0" />
+      <point x="569.6666666666666" y="804.0" />
+      <point x="81.66666666666663" y="178.5" />
+    </edge>
+    <edge source="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Payment" target="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.User">
+      <point x="-57.75" y="-84.0" />
+      <point x="57.75" y="377.0" />
+      <point x="131.15" y="377.0" />
+      <point x="-87.20000000000002" y="124.5" />
+    </edge>
+    <edge source="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Storage" target="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.StorageType">
+      <point x="81.66666666666663" y="-178.5" />
+      <point x="569.6666666666666" y="397.0" />
+      <point x="725.85" y="397.0" />
+      <point x="0.0" y="178.5" />
+    </edge>
+    <edge source="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Domain" target="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.User">
+      <point x="-61.0" y="-165.0" />
+      <point x="343.87017543859656" y="794.0" />
+      <point x="170.91666666666666" y="794.0" />
+      <point x="170.91666666666666" y="397.0" />
+      <point x="218.35" y="397.0" />
+      <point x="-2.8421709430404007E-14" y="124.5" />
+    </edge>
+    <edge source="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Notification" target="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.User">
+      <point x="73.66666666666669" y="-138.0" />
+      <point x="707.5368421052633" y="1179.0" />
+      <point x="697.7666666666667" y="1179.0" />
+      <point x="697.7666666666667" y="387.0" />
+      <point x="305.54999999999995" y="387.0" />
+      <point x="87.19999999999996" y="124.5" />
+    </edge>
+    <edge source="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Payment" target="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Bill">
+      <point x="57.75" y="-84.0" />
+      <point x="173.25" y="1505.0" />
+      <point x="203.37017543859653" y="1505.0" />
+      <point x="0.0" y="124.5" />
+    </edge>
+    <edge source="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Domain" target="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Storage">
+      <point x="61.0" y="-165.0" />
+      <point x="465.87017543859656" y="804.0" />
+      <point x="488.0" y="804.0" />
+      <point x="0.0" y="178.5" />
+    </edge>
+    <edge source="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Storage" target="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.User">
+      <point x="-81.66666666666669" y="-178.5" />
+      <point x="406.33333333333337" y="397.0" />
+      <point x="261.94999999999993" y="397.0" />
+      <point x="43.59999999999994" y="124.5" />
+    </edge>
+    <edge source="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Statistic" target="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Domain">
+      <point x="0.0" y="-84.0" />
+      <point x="0.0" y="165.0" />
+    </edge>
+    <edge source="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Bill" target="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.User">
+      <point x="-55.33333333333337" y="-124.5" />
+      <point x="148.03684210526316" y="1179.0" />
+      <point x="88.53684210526316" y="1179.0" />
+      <point x="88.53684210526316" y="387.0" />
+      <point x="174.75000000000003" y="387.0" />
+      <point x="-43.599999999999994" y="124.5" />
+    </edge>
+    <edge source="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Notification" target="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Domain">
+      <point x="-73.66666666666669" y="-138.0" />
+      <point x="560.2035087719298" y="1179.0" />
+      <point x="486.2035087719298" y="1179.0" />
+      <point x="81.33333333333331" y="165.0" />
+    </edge>
+    <edge source="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Bill" target="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Storage">
+      <point x="0.0" y="-124.5" />
+      <point x="203.37017543859653" y="1179.0" />
+      <point x="182.33333333333334" y="1179.0" />
+      <point x="182.33333333333334" y="804.0" />
+      <point x="406.33333333333337" y="804.0" />
+      <point x="-81.66666666666669" y="178.5" />
+    </edge>
+    <edge source="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Storage" target="45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.DataCenter">
+      <point x="0.0" y="-178.5" />
+      <point x="488.0" y="397.0" />
+      <point x="451.35" y="397.0" />
+      <point x="0.0" y="97.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.33993015133876603" x="438.5" y="849.0" />
+  <SelectedNodes>
+    <node>45bf2878-9cb5-4e77-8d47-21c3aba8ad1e.TABLE:WebStorage.Notification</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+
