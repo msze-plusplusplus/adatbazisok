@@ -13,9 +13,10 @@
 - [Fejlesztési adatbázis](README.devdb.md)
 - [Dokumentáció szerkesztés és generálás](pdf/)
 
-![Generate and Deploy](https://github.com/Teaching-projects/SZE-MOSZE-2020-plusplusplus/workflows/Generate%20and%20deploy/badge.svg)
+[![Generate and deploy](https://github.com/sze-plusplusplus/adatbazisok/actions/workflows/pages.yml/badge.svg)](https://github.com/sze-plusplusplus/adatbazisok/actions/workflows/pages.yml)
 
 [Generált HTML dokumentáció](https://sze-plusplusplus.github.io/adatbazisok/)
+
 [Generált PDF dokumentáció](https://sze-plusplusplus.github.io/adatbazisok/webtarhely_adatbazis_plusplusplus.pdf)
 
 ## Webtárhely/Domain kezelés
