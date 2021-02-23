@@ -1,0 +1,144 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style type="text/css">p {
+  text-align: justify;
+  width: 100%;
+}
+
+.page-break {
+  page-break-after: always;
+}
+
+img {
+  max-width: 100%;
+  max-height: 20cm;
+  margin: 0 auto;
+  display: block;
+}
+/*# sourceURL=style.css*/</style><style type="text/css">/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+/*# sourceURL=/home/runner/work/adatbazisok/adatbazisok/pdf/node_modules/highlight.js/styles/github.css*/</style></head>
+<body class="">
+<h1 id="webtárhely">Webtárhely</h1>
+<h2 id="leírás-és-funkcionális-követelmények">Leírás és funkcionális követelmények</h2>
+<p>Az általunk választott téma egy webtárhely séma alapszintű funkcióinak leképezése adatbázis szemszögből.</p>
+<p>Az adatbázisban tárolhatóak az egyes webtárhelyek és azoknak adatai. Vannak webtárhely típusból jövő beállítási adatok, amik mint csomag beállítások foghatóak fel, illetve vannak a webtárhely a felhasználói által specializált konfigurációs beállítások. Ezek a beállítások együtt alkotják, majd a webtárhely költségeit. A webtárhelyek létrehozásánál, ki lehet választani, hogy melyik szerver központba jöjjön létre a mi tárhelyünk.</p>
+<p>A adatbázisban tárolva vannak a felhasználók és adataik, akik a webtárhely létrehozáson kívül, képesek saját domaint is csatolni fiókjukhoz.</p>
+<p>A fizetési kötelezettségek is tárolva vannak. El van tárolva, hogy mikör jött létre, meéyikfeéhasználó számára, milyen összeggel és hogy milyen határidővel. Ehhez az adat halmazhot tartozik egy másik tábla, ami a felhasználók által végrehajtott tranzakciókat hivatott tárolni.</p>
+<p>Folyamatos statisztikát állítunk elő és tároljuk el, hogy a felhasználók visszajelzést kaphassanak a látogatottsági számokról és az új egyedi látogatásokról. Ezek az adatok, az egyes domain címekhez vannak csatolva.</p>
+<p>Továbbá az adatbázis rendelkezik értesítésekkel, amik a felhasznélók figyelmét hivatottak felhívni. Például a havi statisztikáról, befizetési kötelezettségekről, kifezetett tranzakciókról, bérleti lejártakról és így tovább.</p>
+<h2 id="kérdések">Kérdések</h2>
+<ol>
+<li>Első</li>
+<li>Második</li>
+<li>Harmadik</li>
+</ol>
+<div class="page-break"></div>
+
+<h2 id="adatmodell">Adatmodell</h2>
+<p><img src="WebStorage.png" alt="UML Adatbázis séma" title="UML Adatbázis séma"></p>
+<div class="page-break"></div>
+
+<h2 id="relációs-séma">Relációs séma</h2>
+<h2 id="inputoutput-adatok-adattípusba-rendezve">Input/Output adatok adattípusba rendezve</h2>
+<h2 id="elsődleges-kulcsok">Elsődleges kulcsok</h2>
+<h2 id="megszorítások">Megszorítások</h2>
+
+
+
+</body></html>
