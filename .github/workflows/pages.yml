@@ -12,7 +12,7 @@ jobs:
           cd pdf
           yarn
           yarn generate
-          shopt -s extglob && mkdir -p dist && cp docs/!(*.md) dist/
+          bash -c "mkdir -p dist && cp docs/!(*.md) dist/"
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.0.0
