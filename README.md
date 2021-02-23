@@ -7,6 +7,17 @@
 - Baranyai Bence Bendegúz
 - Karcag Tamas
 
+## Dokumentáció írás / Fejlesztés
+
+- a **README** egy vázlat, rövidített leírás
+- [Fejlesztési adatbázis](README.devdb.md)
+- [Dokumentáció szerkesztés és generálás](pdf/)
+
+![Generate and Deploy](https://github.com/Teaching-projects/SZE-MOSZE-2020-plusplusplus/workflows/Generate%20and%20deploy/badge.svg)
+
+[Generált HTML dokumentáció]()
+[Generált PDF dokumentáció]()
+
 ## Webtárhely/Domain kezelés
 
 ### User
