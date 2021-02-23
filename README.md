@@ -121,17 +121,17 @@
 
 - 1 tábla (min. 4 db)
   - A `.com` domainek száma `[done]`
-  - havi / évi statisztika az egyes domainekhez és/vagy felhasználókhoz (`*`)
-  - Data centers listája név alapján ASC rendezve és város szám füzött kóddal `[done]`
+  - (?) havi / évi statisztika az egyes domainekhez és/vagy felhasználókhoz (`*`)
+  - Datacenters listája név alapján ASC rendezve és város azonosító füzött kóddal `[done]`
   - A top 3 legtöbb központtal rendelkező városok nevei (Csökkenő sorrendben, darabszámmal) `[done]`
   - Tárhely típusok listája ahol van php `[done]`
 - 2 tábla (min. 6 db)
   - Az összes webtárhely, ahol SSH engedélyezve van és az alapár kevesebb 20000
-  - Az össze olyan webdomain, aminek nincsen webtárhyelye
+  - Az össze olyan webdomain, aminek nincsen webtárhelye
   - Azok a kifizetések, amik még nem jártak le és nem fizette ki a felhasználó, akihez tartozik
   - Azok a webtárhelyek, amiknek a domain címe már lejárt
   - _2019-09-12_ - _2020-02-23_ között regisztrált felhasználók, által befizetett számlák és befizetése ha volt
-  - Azok az adat központok, ahol a webtárhelyek fele rendelkezik adatbázissal, php-val és e-mail fiókokkal
+  - Azok az adat központok, ahol a webtárhelyek legalább fele rendelkezik adatbázissal, php-val és e-mail fiókokkal
   - Legtöbbet használt névszerverek (Csökkenő sorrendben)
 - 3 vagy több tábla (min. 8 db, 3+ tábla min. 2 db)
   - Egy domainen, aminek a tárhelyén a PHP futtatás engedélyezve van, lesz-e karbantartás a következő 30 napban, _BUD1_ adatközpontban? (`Domain, Storage, StorageTypes, DataCenters, Notification`)
