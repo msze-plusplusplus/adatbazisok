@@ -1,0 +1,14 @@
+{
+  "name": "adatbazis-pdf-generalas",
+  "version": "1.0.0",
+  "private": "true",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "generate": "node index.js"
+  },
+  "author": "Baranyai Bence & Karcag Tamás",
+  "dependencies": {
+    "md-to-pdf": "^3.3.0"
+  }
+}

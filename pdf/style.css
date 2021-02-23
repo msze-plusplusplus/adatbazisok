@@ -1,0 +1,15 @@
+p {
+  text-align: justify;
+  width: 100%;
+}
+
+.page-break {
+  page-break-after: always;
+}
+
+img {
+  max-width: 100%;
+  max-height: 20cm;
+  margin: 0 auto;
+  display: block;
+}
