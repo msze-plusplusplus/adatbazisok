@@ -109,13 +109,13 @@
 
 - 1 tábla (min. 4 db)
   - A `.com` domainek száma `[done]`
-  - havi / évi statisztika az egyes domainekhez és/vagy felhasználókhoz (`*`)
   - Data centers listája név alapján ASC rendezve és város szám füzött kóddal `[done]`
   - A top 3 legtöbb központtal rendelkező városok nevei (Csökkenő sorrendben, darabszámmal) `[done]`
   - Tárhely típusok listája ahol van php `[done]`
 - 2 tábla (min. 6 db)
-  - Az összes webtárhely, ahol SSH engedélyezve van és az alapár kevesebb 20000
-  - Az össze olyan webdomain, aminek nincsen webtárhyelye
+  - Évi statisztika az egyes domainekhez (`*`) `[done]`
+  - Az összes webtárhely neve és létrehozási dátuma, ahol SSH engedélyezve van és a maximum sávszélesség nagyobb mint vagy egyenlő 1 `[done]`
+  - Az összes olyan tárhely, aminek nincsen egy domain címe sem `[done]`
   - Azok a kifizetések, amik még nem jártak le és nem fizette ki a felhasználó, akihez tartozik
   - Azok a webtárhelyek, amiknek a domain címe már lejárt
   - _2019-09-12_ - _2020-02-23_ között regisztrált felhasználók, által befizetett számlák és befizetése ha volt
