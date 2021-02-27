@@ -128,9 +128,9 @@
   - Évi statisztika az egyes domainekhez (`*`) `[done]`
   - Az összes webtárhely neve és létrehozási dátuma, ahol SSH engedélyezve van és a maximum sávszélesség nagyobb mint vagy egyenlő 1 `[done]`
   - Az összes olyan tárhely, aminek nincsen egy domain címe sem `[done]`
-  - Azok a kifizetések, amik még nem jártak le és nem fizette ki a felhasználó, akihez tartozik
-  - Azok a webtárhelyek, amiknek a domain címe már lejárt
-  - _2019-09-12_ - _2020-02-23_ között regisztrált felhasználók, által befizetett számlák és befizetése ha volt
+  - Van-e az adott (1-es Id) felhasználónak nem kifizetett tartozása `[done]`
+  - Azok a webtárhelyek, amiknek a domain címe már lejárt `[done]`
+  - _2019-09-12_ - _2020-02-23_ között regisztrált felhasználók, által befizetett számlák és befizetése ha volt `[done]`
   - Azok az adat központok, ahol a webtárhelyek legalább fele rendelkezik adatbázissal, php-val és e-mail fiókokkal
   - Legtöbbet használt névszerverek (Csökkenő sorrendben)
 - 3 vagy több tábla (min. 8 db, 3+ tábla min. 2 db)

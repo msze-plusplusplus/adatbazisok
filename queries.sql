@@ -34,3 +34,18 @@ SELECT s.Name FROM Storage s
 LEFT JOIN Domain d ON d.StorageId = s.Id
 GROUP BY s.Name
 HAVING COUNT(d.Id) = 0;
+
+/* Van-e az adott (1-es Id) felhasználónak nem kifizetett tartozása */
+SELECT b.BillId FROM Bill b
+LEFT JOIN Payment p ON p.BillId = b.Id
+WHERE b.UserId = 1 && p.Id IS NULL && b.Deadline >= NOW();
+
+/* Azok a webtárhelyek, amiknek a domain címe már lejárt */
+SELECT s.Name, s.Expiration FROM Storage s
+INNER JOIN Domain d ON s.Id = d.StorageId
+WHERE s.Expiration <= NOW();
+
+/* _2019-09-12_ - _2020-02-23_ között regisztrált felhasználók, által végzett kifezetési tranzakciók */
+SELECT u.UserName, p.TransactionId FROM User u
+INNER JOIN Payment p ON u.Id = p.UserId
+WHERE p.Date BETWEEN '2019-09-12' AND '2020-02-23';
