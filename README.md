@@ -7,6 +7,18 @@
 - Baranyai Bence Bendegúz
 - Karcag Tamas
 
+## Dokumentáció írás / Fejlesztés
+
+- a **README** egy vázlat, rövidített leírás
+- [Fejlesztési adatbázis](README.devdb.md)
+- [Dokumentáció szerkesztés és generálás](pdf/)
+
+[![Generate and deploy](https://github.com/sze-plusplusplus/adatbazisok/actions/workflows/pages.yml/badge.svg)](https://github.com/sze-plusplusplus/adatbazisok/actions/workflows/pages.yml)
+
+[Generált HTML dokumentáció](https://sze-plusplusplus.github.io/adatbazisok/)
+
+[Generált PDF dokumentáció](https://sze-plusplusplus.github.io/adatbazisok/webtarhely_adatbazis_plusplusplus.pdf)
+
 ## Webtárhely/Domain kezelés
 
 ### User
@@ -119,7 +131,7 @@
   - Azok a kifizetések, amik még nem jártak le és nem fizette ki a felhasználó, akihez tartozik
   - Azok a webtárhelyek, amiknek a domain címe már lejárt
   - _2019-09-12_ - _2020-02-23_ között regisztrált felhasználók, által befizetett számlák és befizetése ha volt
-  - Azok az adat központok, ahol a webtárhelyek fele rendelkezik adatbázissal, php-val és e-mail fiókokkal
+  - Azok az adat központok, ahol a webtárhelyek legalább fele rendelkezik adatbázissal, php-val és e-mail fiókokkal
   - Legtöbbet használt névszerverek (Csökkenő sorrendben)
 - 3 vagy több tábla (min. 8 db, 3+ tábla min. 2 db)
   - Egy domainen, aminek a tárhelyén a PHP futtatás engedélyezve van, lesz-e karbantartás a következő 30 napban, _BUD1_ adatközpontban? (`Domain, Storage, StorageTypes, DataCenters, Notification`)
