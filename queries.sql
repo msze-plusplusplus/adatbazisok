@@ -25,7 +25,7 @@ INNER JOIN Statistic s ON s.DomainId = d.Id
 GROUP BY Year;
 
 /* Az összes webtárhely neve és létrehozási dátuma, ahol SSH engedélyezve van és a maximum sávszélesség nagyobb mint vagy egyenlő 1 */
-SELECT s.Name FROM Storage s
+SELECT s.Name, s.Creation FROM Storage s
 INNER JOIN StorageType st ON st.Id = s.TypeId
 WHERE st.SSHEnabled AND s.MaximumDataTraffic >= 1;
 

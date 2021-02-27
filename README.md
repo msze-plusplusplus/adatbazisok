@@ -132,7 +132,6 @@
   - Azok a webtárhelyek, amiknek a domain címe már lejárt `[done]`
   - _2019-09-12_ - _2020-02-23_ között regisztrált felhasználók, által befizetett számlák és befizetése ha volt `[done]`
   - Azok az adat központok, ahol a webtárhelyek legalább fele rendelkezik adatbázissal, php-val és e-mail fiókokkal
-  - Legtöbbet használt névszerverek (Csökkenő sorrendben)
 - 3 vagy több tábla (min. 8 db, 3+ tábla min. 2 db)
   - Egy domainen, aminek a tárhelyén a PHP futtatás engedélyezve van, lesz-e karbantartás a következő 30 napban, _BUD1_ adatközpontban? (`Domain, Storage, StorageTypes, DataCenters, Notification`)
   - Az utóbbi 2 hónapban befizetett, _hu_ TLD domainek listázása, felhasználókkal (`User, Domain, Bill, Payment`).
