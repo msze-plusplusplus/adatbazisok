@@ -31,8 +31,9 @@
 
 </center>
 
-### Indexek
-
 ### Egyéb megszorítások
 
 (Transaction Id, BillId, stb.)
+
+Procedures ?
+Triggers ?
