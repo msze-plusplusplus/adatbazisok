@@ -166,7 +166,734 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <div class="page-break"></div>
 
 <h2 id="relációs-séma">Relációs séma</h2>
+<center>
+
+<table>
+<thead>
+<tr>
+<th>Adatbázis</th>
+<th>Webtárhely (WebStorage)</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Felhasználók</td>
+<td><strong>User</strong> (Id, FullName, UserName, Email, Password, Registration, Blocked, MaximumStorage)</td>
+<td></td>
+</tr>
+<tr>
+<td>Tárhely típus</td>
+<td><strong>StorageType</strong> (Id, SSHEnabled, PHPEnabled, MaximumEmailAccounts, MaximumFTPAccounts, MaximumDatabaseNumber, PHPMemoryLimit, MaximumPHPExecutionTime, CPanelIsEnabled, BaseCost, DataTrafficMultiplier)</td>
+<td></td>
+</tr>
+<tr>
+<td>Szerver központ</td>
+<td><strong>DataCenter</strong> (Id, Name, City, Number, Area, StorageCapacity)</td>
+<td></td>
+</tr>
+<tr>
+<td>Tárhely</td>
+<td><strong>Storage</strong> (Id, UserId, Creation, Expiration, TypeId, Size, MaximumDataTraffic, EmailStorageSize, DatabaseSize, DataCenterId, Cost, Name)</td>
+<td></td>
+</tr>
+<tr>
+<td>Domain név</td>
+<td><strong>Domain</strong> (Id, UserId, DomainAddress, StorageId, TLD, Registration, Expiration, NameServer1, NameServer2, NameServer3, NameServer4)</td>
+<td></td>
+</tr>
+<tr>
+<td>Költségek</td>
+<td><strong>Bill</strong> (Id, UserId, StorageId, DomainId, Date, Deadline, Cost, BillId)</td>
+<td></td>
+</tr>
+<tr>
+<td>Kifizetések</td>
+<td><strong>Payment</strong> (Id, UserId, Date, TransactionId, BillId)</td>
+<td></td>
+</tr>
+<tr>
+<td>Statisztika</td>
+<td><strong>Statistic</strong> (Id, DomainId, Month, Views, UniqueViewers)</td>
+<td></td>
+</tr>
+<tr>
+<td>Értesítések</td>
+<td><strong>Notification</strong> (Id, UserId, StorageId, DomainId, Creation, TimeFrameStart, TimeFrameEnd, Title, Message)</td>
+<td></td>
+</tr>
+</tbody></table>
+</center>
+
 <h2 id="inputoutput-adatok-adattípusba-rendezve">Input/Output adatok adattípusba rendezve</h2>
+<h3 id="user">User</h3>
+<center>
+
+<table>
+<thead>
+<tr>
+<th>Mező</th>
+<th>Típus</th>
+<th align="right">Hossz</th>
+<th align="center">Opcionális</th>
+<th>Alapértelmezett érték</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Id</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>FullName</td>
+<td>varchar</td>
+<td align="right">60</td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>UserName</td>
+<td>varchar</td>
+<td align="right">30</td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>Email</td>
+<td>varchar</td>
+<td align="right">120</td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>Password</td>
+<td>varchar</td>
+<td align="right">120</td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>Registration</td>
+<td>datetime</td>
+<td align="right"></td>
+<td align="center"></td>
+<td><code>NOW()</code></td>
+</tr>
+<tr>
+<td>Blocked</td>
+<td>boolean</td>
+<td align="right"></td>
+<td align="center"></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>MaximumStorage</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td><code>5</code></td>
+</tr>
+</tbody></table>
+</center>
+
+<h3 id="storagetype">StorageType</h3>
+<center>
+
+<table>
+<thead>
+<tr>
+<th>Mező</th>
+<th>Típus</th>
+<th align="right">Hossz</th>
+<th align="center">Opcionális</th>
+<th>Alapértelmezett érték</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Id</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>SSHEnabled</td>
+<td>boolean</td>
+<td align="right"></td>
+<td align="center"></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>PHPEnabled</td>
+<td>boolean</td>
+<td align="right"></td>
+<td align="center"></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>MaximumEmailAccounts</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center">X</td>
+<td></td>
+</tr>
+<tr>
+<td>MaximumFTPAccounts</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center">X</td>
+<td></td>
+</tr>
+<tr>
+<td>MaximumDatabaseNumber</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center">X</td>
+<td></td>
+</tr>
+<tr>
+<td>PHPMemoryLimit</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center">X</td>
+<td></td>
+</tr>
+<tr>
+<td>MaximumPHPExecutionTime</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center">X</td>
+<td></td>
+</tr>
+<tr>
+<td>CPaneldIsEnabled</td>
+<td>boolean</td>
+<td align="right"></td>
+<td align="center"></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>BaseCost</td>
+<td>decimal</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>DataTrafficMultiplier</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>Name</td>
+<td>varchar</td>
+<td align="right">120</td>
+<td align="center"></td>
+<td></td>
+</tr>
+</tbody></table>
+</center>
+
+<h3 id="datacenter">DataCenter</h3>
+<center>
+
+<table>
+<thead>
+<tr>
+<th>Mező</th>
+<th>Típus</th>
+<th align="right">Hossz</th>
+<th align="center">Opcionális</th>
+<th>Alapértelmezett érték</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Id</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>Name</td>
+<td>varchar</td>
+<td align="right">30</td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>City</td>
+<td>varchar</td>
+<td align="right">80</td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>Number</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>Area</td>
+<td>decimal</td>
+<td align="right">X</td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>StorageCapacity</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+</tbody></table>
+</center>
+
+<h3 id="storage">Storage</h3>
+<center>
+
+<table>
+<thead>
+<tr>
+<th>Mező</th>
+<th>Típus</th>
+<th align="right">Hossz</th>
+<th align="center">Opcionális</th>
+<th>Alapértelmezett érték</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Id</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>UserId</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>Creation</td>
+<td>datetime</td>
+<td align="right"></td>
+<td align="center"></td>
+<td><code>NOW()</code></td>
+</tr>
+<tr>
+<td>Expiration</td>
+<td>datetime</td>
+<td align="right"></td>
+<td align="center"></td>
+<td><code>DATE_ADD(NOW(), INTERVAL 1 YEAR)</code></td>
+</tr>
+<tr>
+<td>TypeId</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>Size</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>MaximumDataTraffic</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>EmailStorageSize</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center">X</td>
+<td></td>
+</tr>
+<tr>
+<td>DatabaseSize</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center">X</td>
+<td></td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>decimal</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>Name</td>
+<td>varchar</td>
+<td align="right">80</td>
+<td align="center"></td>
+<td></td>
+</tr>
+</tbody></table>
+</center>
+
+<h3 id="domain">Domain</h3>
+<center>
+
+<table>
+<thead>
+<tr>
+<th>Mező</th>
+<th>Típus</th>
+<th align="right">Hossz</th>
+<th align="center">Opcionális</th>
+<th>Alapértelmezett érték</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Id</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>UserId</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>DomainAddress</td>
+<td>varchar</td>
+<td align="right">100</td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>StorageId</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center">X</td>
+<td></td>
+</tr>
+<tr>
+<td>TLD</td>
+<td>varchar</td>
+<td align="right">5</td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>Registration</td>
+<td>datetime</td>
+<td align="right"></td>
+<td align="center"></td>
+<td><code>NOW()</code></td>
+</tr>
+<tr>
+<td>Expiration</td>
+<td>datetime</td>
+<td align="right"></td>
+<td align="center"></td>
+<td><code>DATE_ADD(NOW(), INTERVAL 1 YEAR)</code></td>
+</tr>
+<tr>
+<td>NameServer1</td>
+<td>varchar</td>
+<td align="right">100</td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>NameServer2</td>
+<td>varchar</td>
+<td align="right">100</td>
+<td align="center">X</td>
+<td></td>
+</tr>
+<tr>
+<td>NameServer3</td>
+<td>varchar</td>
+<td align="right">100</td>
+<td align="center">X</td>
+<td></td>
+</tr>
+<tr>
+<td>NameServer4</td>
+<td>varchar</td>
+<td align="right">100</td>
+<td align="center">X</td>
+<td></td>
+</tr>
+</tbody></table>
+</center>
+
+<h3 id="bill">Bill</h3>
+<center>
+
+<table>
+<thead>
+<tr>
+<th>Mező</th>
+<th>Típus</th>
+<th align="right">Hossz</th>
+<th align="center">Opcionális</th>
+<th>Alapértelmezett érték</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Id</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>UserId</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>StorageId</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center">X</td>
+<td></td>
+</tr>
+<tr>
+<td>DomainId</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center">X</td>
+<td></td>
+</tr>
+<tr>
+<td>Date</td>
+<td>datetime</td>
+<td align="right"></td>
+<td align="center"></td>
+<td><code>NOW()</code></td>
+</tr>
+<tr>
+<td>Deadline</td>
+<td>datetime</td>
+<td align="right"></td>
+<td align="center"></td>
+<td><code>DATE_ADD(NOW(), INTERVAL 1 MONTH)</code></td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>decimal</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>BillId</td>
+<td>varchar</td>
+<td align="right">100</td>
+<td align="center"></td>
+<td></td>
+</tr>
+</tbody></table>
+</center>
+
+<h3 id="payment">Payment</h3>
+<center>
+
+<table>
+<thead>
+<tr>
+<th>Mező</th>
+<th>Típus</th>
+<th align="right">Hossz</th>
+<th align="center">Opcionális</th>
+<th>Alapértelmezett érték</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Id</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>UserId</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>Date</td>
+<td>datetime</td>
+<td align="right"></td>
+<td align="center"></td>
+<td><code>NOW()</code></td>
+</tr>
+<tr>
+<td>TranscactionId</td>
+<td>varchar</td>
+<td align="right">100</td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>BillId</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+</tbody></table>
+</center>
+
+<h3 id="statistic">Statistic</h3>
+<center>
+
+<table>
+<thead>
+<tr>
+<th>Mező</th>
+<th>Típus</th>
+<th align="right">Hossz</th>
+<th align="center">Opcionális</th>
+<th>Alapértelmezett érték</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Id</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>DomainId</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>Month</td>
+<td>date</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>Views</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>UniqueViewers</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td><code>0</code></td>
+</tr>
+</tbody></table>
+</center>
+
+<h3 id="notification">Notification</h3>
+<center>
+
+<table>
+<thead>
+<tr>
+<th>Mező</th>
+<th>Típus</th>
+<th align="right">Hossz</th>
+<th align="center">Opcionális</th>
+<th>Alapértelmezett érték</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Id</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>UserId</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>StorageId</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center">X</td>
+<td></td>
+</tr>
+<tr>
+<td>DomainId</td>
+<td>int</td>
+<td align="right"></td>
+<td align="center">X</td>
+<td></td>
+</tr>
+<tr>
+<td>Creation</td>
+<td>datetime</td>
+<td align="right"></td>
+<td align="center"></td>
+<td><code>NOW()</code></td>
+</tr>
+<tr>
+<td>TimeFrameStart</td>
+<td>datetime</td>
+<td align="right"></td>
+<td align="center">X</td>
+<td></td>
+</tr>
+<tr>
+<td>TimeFrameEnd</td>
+<td>datetime</td>
+<td align="right"></td>
+<td align="center">X</td>
+<td></td>
+</tr>
+<tr>
+<td>Title</td>
+<td>varchar</td>
+<td align="right">100</td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td>Message</td>
+<td>longtext</td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+</tr>
+</tbody></table>
+</center>
+
 <h2 id="elsődleges-kulcsok">Elsődleges kulcsok</h2>
 <h2 id="megszorítások">Megszorítások</h2>
 
