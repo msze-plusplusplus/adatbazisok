@@ -15,7 +15,21 @@
 
 </center>
 
-### Uniqe kulcsok
+### Egyedi kulcsok
+
+<center>
+
+| Tábla      | Mezők              |
+| ---------- | ------------------ |
+| User       | UserName, Email    |
+| DataCenter | Name               |
+| Storage    | UserId, Name       |
+| Domain     | DomainAddress, TLD |
+| Bill       | BillId             |
+| Payment    | Transactionid      |
+| Statistic  | DomainId, Month    |
+
+</center>
 
 ### Indexek
 
