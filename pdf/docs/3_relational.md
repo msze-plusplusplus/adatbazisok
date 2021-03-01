@@ -15,3 +15,5 @@
 | Értesítések     | **Notification** (Id, UserId, StorageId, DomainId, Creation, TimeFrameStart, TimeFrameEnd, Title, Message)                                                                                               |
 
 </center>
+
+<div class="page-break"></div>
