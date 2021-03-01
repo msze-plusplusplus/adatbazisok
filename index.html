@@ -958,6 +958,47 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </center>
 
 <h2 id="megszorítások">Megszorítások</h2>
+<h3 id="idegen-kulcsok">Idegen kulcsok</h3>
+<center>
+
+<table>
+<thead>
+<tr>
+<th>Tábla</th>
+<th>Mezők</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Storage</td>
+<td>UserId, TypeId, DataCenterId</td>
+</tr>
+<tr>
+<td>Domain</td>
+<td>UserId, StorageId</td>
+</tr>
+<tr>
+<td>Bill</td>
+<td>UserId, StorageId, DomainId</td>
+</tr>
+<tr>
+<td>Payment</td>
+<td>UserId, BillId</td>
+</tr>
+<tr>
+<td>Statistic</td>
+<td>DomainId</td>
+</tr>
+<tr>
+<td>Notification</td>
+<td>UserId, StorageId, DomainId</td>
+</tr>
+</tbody></table>
+</center>
+
+<h3 id="uniqe-kulcsok">Uniqe kulcsok</h3>
+<h3 id="indexek">Indexek</h3>
+<h3 id="egyéb-megszorítások">Egyéb megszorítások</h3>
+<p>(Transaction Id, BillId, stb.)</p>
 
 
 
