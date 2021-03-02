@@ -47,6 +47,11 @@ section.header span:last-child {
 section.footer .page-number {
     float: right;
 }
+
+section.footer span.sign {
+  display: block;
+  font-size: 4px;
+}
 </style>
 <section class="header">
     <span>Baranyai Bence Bendegúz<br/>Karcag Tamás</span>
@@ -54,10 +59,19 @@ section.footer .page-number {
 </section>`,
     footerTemplate: `
 <section class="footer">
-    <span>${new Date().toLocaleString("HU")}</span>
+    <span>${new Date().toLocaleString("HU", {
+      timeZone: "Europe/Budapest",
+    })}</span>
     <div class="page-number">
         <span class="pageNumber"></span> / <span class="totalPages"></span>
     </div>
+    <span class="sign">${
+      process.env.GITHUB_REPOSITORY || "Locally generated"
+    } - Creator: ${
+      process.env.GITHUB_ACTOR || require("os").userInfo().username || ""
+    } ${
+      process.env.GITHUB_SHA ? "- Commit: " + process.env.GITHUB_SHA : ""
+    }</span>
 </section>`,
   },
 };
