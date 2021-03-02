@@ -149,3 +149,35 @@ CREATE TABLE Notification(
     FOREIGN KEY (StorageId) REFERENCES Storage(Id),
     FOREIGN KEY (DomainId) REFERENCES Domain(Id)
 );
+
+DROP FUNCTION `GetStoragePrice`;
+DELIMITER ;;
+CREATE FUNCTION `GetStoragePrice` (`_type` int, `_size` int, `_traffic` int, `_email_storage` int, `_database_size` int) RETURNS decimal(10,0) unsigned
+BEGIN
+DECLARE _base decimal;
+DECLARE _price decimal;
+
+SET _base = (SELECT BaseCost FROM StorageType WHERE Id=_type);
+SET _price = _base;
+
+SET _price = _price + ((_size + _email_storage + _database_size) * 0.01 * _base / 500);
+SET _price = _price + ((SELECT DataTrafficMultiplier FROM StorageType WHERE Id=_type) * _traffic * 0.1);
+
+
+RETURN _price;
+END;;
+DELIMITER ;
+
+DROP FUNCTION `AreLimitsReached`;
+DELIMITER ;;
+CREATE FUNCTION `AreLimitsReached` (`_user` int) RETURNS bool
+BEGIN
+DECLARE _limited bool;
+DECLARE _has_invoice bool;
+
+SET _limited = (SELECT (Blocked OR MaximumStorage <= COUNT(s.Id)) AS limited FROM User LEFT JOIN Storage s ON User.Id=s.UserId WHERE User.Id=_user GROUP BY User.Id);
+SET _has_invoice = (SELECT COUNT(Id) FROM Bill WHERE UserId=_user) <> (SELECT COUNT(Id) FROM Payment WHERE UserId=_user);
+
+RETURN _limited OR _has_invoice;
+END;;
+DELIMITER ;

@@ -1,7 +1,6 @@
 ### Tárolt eljárások
 
 - `GetStoragePrice` - Tárhely ár kiszámítása
-- `GetStorageBandwith` - Tárhely adatforgalom kiszámítás
 - `AreLimitsReached` - Limitek ellenőrzése
   - van-e befizetetlen számla
   - felhasználói limit nem telt-e be
