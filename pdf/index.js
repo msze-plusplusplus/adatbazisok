@@ -1,6 +1,6 @@
 const { mdToPdf } = require("md-to-pdf");
 
-const content = require("child_process").execSync(
+let content = require("child_process").execSync(
   "awk 'FNR==1{print \"\"}{print}' docs/*.md | sed '1d'"
 );
 
@@ -8,6 +8,16 @@ const html = {
   as_html: true,
   dest: "docs/index.html",
 };
+
+const currentDate = new Date().toLocaleString("HU", {
+  timeZone: "Europe/Budapest",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+});
 
 const config = {
   basedir: "docs/",
@@ -59,15 +69,13 @@ section.footer span.sign {
 </section>`,
     footerTemplate: `
 <section class="footer">
-    <span>${new Date().toLocaleString("HU", {
-      timeZone: "Europe/Budapest",
-    })}</span>
+    <span>${currentDate}</span>
     <div class="page-number">
         <span class="pageNumber"></span> / <span class="totalPages"></span>
     </div>
     <span class="sign">${
-      process.env.GITHUB_REPOSITORY || "Locally generated"
-    } - Creator: ${
+      process.env.GITHUB_REPOSITORY || "Helyben generált"
+    } - Feltöltő: ${
       process.env.GITHUB_ACTOR || require("os").userInfo().username || ""
     } ${
       process.env.GITHUB_SHA ? "- Commit: " + process.env.GITHUB_SHA : ""
@@ -75,6 +83,15 @@ section.footer span.sign {
 </section>`,
   },
 };
+
+content = content
+  .toString()
+  .replace(
+    "#EMBED#",
+    `Frissítve: ${currentDate} Feltöltő: ${
+      process.env.GITHUB_ACTOR || require("os").userInfo().username || ""
+    } ${process.env.GITHUB_SHA ? "- Commit: " + process.env.GITHUB_SHA : ""}`
+  );
 
 mdToPdf(
   {

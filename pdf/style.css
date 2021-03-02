@@ -16,6 +16,7 @@ img {
 
 table {
   border-collapse: collapse;
+  margin: 0 auto;
 }
 
 table,
@@ -24,6 +25,28 @@ td {
   border: 1px solid black;
 }
 
+th,
+td {
+  padding: 3px 5px;
+}
+
 th {
   background-color: lightgray;
+}
+
+li {
+  margin: 0.6em 0;
+}
+
+code {
+  padding: 2px;
+  border-radius: 2px;
+  background: #eaeaea;
+}
+
+blockquote {
+  margin: 0;
+  padding-left: 1.4rem;
+  color: #535a60;
+  border-left: 4px solid #dadada;
 }
