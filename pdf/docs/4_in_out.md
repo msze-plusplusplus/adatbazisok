@@ -2,8 +2,6 @@
 
 ### User
 
-<center>
-
 | Mező           | Típus    | Hossz | Opcionális | Alapértelmezett érték |
 | -------------- | -------- | ----: | :--------: | --------------------- |
 | Id             | int      |       |            |                       |
@@ -15,11 +13,7 @@
 | Blocked        | boolean  |       |            | `false`               |
 | MaximumStorage | int      |       |            | `5`                   |
 
-</center>
-
 ### StorageType
-
-<center>
 
 | Mező                    | Típus   | Hossz | Opcionális | Alapértelmezett érték |
 | ----------------------- | ------- | ----: | :--------: | --------------------- |
@@ -36,11 +30,9 @@
 | DataTrafficMultiplier   | int     |       |            | `1`                   |
 | Name                    | varchar |   120 |            |                       |
 
-</center>
+<div class="page-break"></div>
 
 ### DataCenter
-
-<center>
 
 | Mező            | Típus   | Hossz | Opcionális | Alapértelmezett érték |
 | --------------- | ------- | ----: | :--------: | --------------------- |
@@ -51,11 +43,7 @@
 | Area            | decimal |     X |            |                       |
 | StorageCapacity | int     |       |            |                       |
 
-</center>
-
 ### Storage
-
-<center>
 
 | Mező               | Típus    | Hossz | Opcionális | Alapértelmezett érték              |
 | ------------------ | -------- | ----: | :--------: | ---------------------------------- |
@@ -71,11 +59,9 @@
 | Cost               | decimal  |       |            |                                    |
 | Name               | varchar  |    80 |            |                                    |
 
-</center>
+<div class="page-break"></div>
 
 ### Domain
-
-<center>
 
 | Mező          | Típus    | Hossz | Opcionális | Alapértelmezett érték              |
 | ------------- | -------- | ----: | :--------: | ---------------------------------- |
@@ -91,11 +77,7 @@
 | NameServer3   | varchar  |   100 |     X      |                                    |
 | NameServer4   | varchar  |   100 |     X      |                                    |
 
-</center>
-
 ### Bill
-
-<center>
 
 | Mező      | Típus    | Hossz | Opcionális | Alapértelmezett érték               |
 | --------- | -------- | ----: | :--------: | ----------------------------------- |
@@ -108,11 +90,7 @@
 | Cost      | decimal  |       |            |                                     |
 | BillId    | varchar  |   100 |            |                                     |
 
-</center>
-
 ### Payment
-
-<center>
 
 | Mező           | Típus    | Hossz | Opcionális | Alapértelmezett érték |
 | -------------- | -------- | ----: | :--------: | --------------------- |
@@ -122,11 +100,7 @@
 | TranscactionId | varchar  |   100 |            |                       |
 | BillId         | int      |       |            |                       |
 
-</center>
-
 ### Statistic
-
-<center>
 
 | Mező          | Típus | Hossz | Opcionális | Alapértelmezett érték |
 | ------------- | ----- | ----: | :--------: | --------------------- |
@@ -136,11 +110,7 @@
 | Views         | int   |       |            | `0`                   |
 | UniqueViewers | int   |       |            | `0`                   |
 
-</center>
-
 ### Notification
-
-<center>
 
 | Mező           | Típus    | Hossz | Opcionális | Alapértelmezett érték |
 | -------------- | -------- | ----: | :--------: | --------------------- |
@@ -153,7 +123,3 @@
 | TimeFrameEnd   | datetime |       |     X      |                       |
 | Title          | varchar  |   100 |            |                       |
 | Message        | longtext |       |            |                       |
-
-</center>
-
-<div class="page-break"></div>

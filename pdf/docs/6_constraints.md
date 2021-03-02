@@ -2,8 +2,6 @@
 
 ### Idegen kulcsok
 
-<center>
-
 | Tábla        | Mezők                        |
 | ------------ | ---------------------------- |
 | Storage      | UserId, TypeId, DataCenterId |
@@ -13,11 +11,7 @@
 | Statistic    | DomainId                     |
 | Notification | UserId, StorageId, DomainId  |
 
-</center>
-
 ### Egyedi kulcsok
-
-<center>
 
 | Tábla      | Mezők              |
 | ---------- | ------------------ |
@@ -29,11 +23,36 @@
 | Payment    | Transactionid      |
 | Statistic  | DomainId, Month    |
 
-</center>
+<div class="page-break"></div>
 
 ### Egyéb megszorítások
 
-(Transaction Id, BillId, stb.)
+- Felhasználók
+  - E-mail cím
+    - Név: A-Za-z0-9 ! # $ % & ' \* + - / = ? ^ \_ ` { | (1-64 karakter)
+    - @
+    - Domain: A-Za-z0-9 - . (1-253 karakter)
+    - TLD: A-Za-z (2+ karakter)
+- Domain
+  - Domain név
+    - A-Za-z0-9 - . (1-253 karakter)
+  - Lejárati dátum
+    - Regisztrációs dátum után
+- Storage
+  - Lejárat
+    - Létrehozva után
+- StorageTypes
+  - Adatbázisok száma, PHP memória limit, PHP max. végrehajtási idő
+    - Csak engedélyezett PHP mellett kitölthető
+- Bill
+  - Számla azonosító
+    - BBKT-[0-9]{4}-[0-9]{8}
+- Payment
+  - Tranzakció azonosító
+    - [0-9]\*
+- Notification
+  - Időkeret kezdet
+    - jüvőbeli időpont
+    - kisebb mint Időkeret vége
 
-Procedures ?
-Triggers ?
+<div class="page-break"></div>

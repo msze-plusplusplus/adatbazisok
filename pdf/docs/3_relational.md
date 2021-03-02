@@ -1,9 +1,7 @@
 ## Relációs séma
 
-<center>
-
-| Adatbázis       | Webtárhely (WebStorage)                                                                                                                                                                                  |     |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| Adatbázis       | Webtárhely (WebStorage)                                                                                                                                                                                  |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Felhasználók    | **User** (Id, FullName, UserName, Email, Password, Registration, Blocked, MaximumStorage)                                                                                                                |
 | Tárhely típus   | **StorageType** (Id, SSHEnabled, PHPEnabled, MaximumEmailAccounts, MaximumFTPAccounts, MaximumDatabaseNumber, PHPMemoryLimit, MaximumPHPExecutionTime, CPanelIsEnabled, BaseCost, DataTrafficMultiplier) |
 | Szerver központ | **DataCenter** (Id, Name, City, Number, Area, StorageCapacity)                                                                                                                                           |
@@ -13,7 +11,5 @@
 | Kifizetések     | **Payment** (Id, UserId, Date, TransactionId, BillId)                                                                                                                                                    |
 | Statisztika     | **Statistic** (Id, DomainId, Month, Views, UniqueViewers)                                                                                                                                                |
 | Értesítések     | **Notification** (Id, UserId, StorageId, DomainId, Creation, TimeFrameStart, TimeFrameEnd, Title, Message)                                                                                               |
-
-</center>
 
 <div class="page-break"></div>

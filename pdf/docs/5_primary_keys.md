@@ -1,7 +1,5 @@
 ## Elsődleges kulcsok
 
-<center>
-
 | Tábla        | Mező |
 | ------------ | ---- |
 | User         | Id   |
@@ -13,7 +11,5 @@
 | Payment      | Id   |
 | Statistic    | Id   |
 | Notification | Id   |
-
-</center>
 
 <div class="page-break"></div>
