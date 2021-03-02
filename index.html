@@ -16,6 +16,7 @@ img {
 
 table {
   border-collapse: collapse;
+  margin: 0 auto;
 }
 
 table,
@@ -24,8 +25,30 @@ td {
   border: 1px solid black;
 }
 
+th,
+td {
+  padding: 3px 5px;
+}
+
 th {
   background-color: lightgray;
+}
+
+li {
+  margin: 0.6em 0;
+}
+
+code {
+  padding: 2px;
+  border-radius: 2px;
+  background: #eaeaea;
+}
+
+blockquote {
+  margin: 0;
+  padding-left: 1.4rem;
+  color: #535a60;
+  border-left: 4px solid #dadada;
 }
 /*# sourceURL=style.css*/</style><style type="text/css">/*
 
@@ -136,42 +159,28 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <p>A fizetési kötelezettségek és befizetési elégtételeik is el vannak tárolva. Külön kerülnek ezek az adatok a két oldalhoz eltárolásra.</p>
 <p>Folyamatos statisztikát állítunk elő és tároljuk el, hogy a felhasználók visszajelzést kaphassanak a látogatottsági számokról és az új egyedi látogatásokról, míg az "élő"/nap/heti adatokért más alrendszer felelős, a hosszútávú (havi) adatok az adatbázisban kerülnek letárolásra. Ezek az adatok, az egyes domain címekhez vannak csatolva.</p>
 <p>Továbbá az adatbázis rendelkezik értesítésekkel, amik a felhasznélók figyelmét hivatottak felhívni és tájékoztatni esetleges hibákról vagy tervezett karbantartásokról. Például forgalomugrásról, befizetési kötelezettségekről, befizetett tranzakciókról, bérleti lejáratokról és így tovább.</p>
+<blockquote>
+<p>Az adatbázis MariaDB-hez készült, más adatbázis motorral nem volt tesztelve. (MariaDB 10.5)</p>
+</blockquote>
 <h2 id="kérdések">Kérdések</h2>
 <ol>
-<li><p>Hány <em>.com</em> TLD-jű domain van beregisztrálva a rendszerbe?</p>
-</li>
-<li><p>Hol találhatók Adatközpontok és mi a jeligéjük?</p>
-</li>
-<li><p>Mi a 3 legtöbb szerverteremmel rendelkező városok nevei?</p>
-</li>
-<li><p>Mely csomagok tartalmaznak PHP futtatási lehetőséget?</p>
-</li>
-<li><p>Mely webtárhelyek rendelkeznek SSH eléréssel és sávszélességük nagyobb mint 1 Gigabit/s, illetve mikor lettek ezek létrehozva?</p>
-</li>
-<li><p>Mely webtárhelyek nem rendelkezik egy Domain címmel sem?</p>
-</li>
-<li><p>Van-e az <em>1</em>-es Id-val rendelkező felhasználónak nem kifizetett számlája és mi annak az azonosítója?</p>
-</li>
-<li><p>Melyek azok a webtárhelyek, amikhez a kapcsolt domain név lejárt?</p>
-</li>
-<li><p>Milyen kifizetések történtek <em>2019-09-12</em> - <em>2020-02-23</em> között regisztrált felhasználóknak? Melyik felhaszálónak és mi volt a tranzakció azonosítója?</p>
-</li>
-<li><p>Melyek azok at adatközpontok, ahol legalább a webtárhelyek fele rendelkezik adatbázissal, PHP-val és e-mail fiókkal is?</p>
-</li>
-<li><p>Mely PHP futtatással rendelkező domainen lesz karbantartás a következő hónapban (30 nap), a <em>BUD1</em> adatközpontban?</p>
-</li>
-<li><p>Mely <em>.hu</em> domain nevek voltak az utóbbi <em>2 hónapban</em> befizetve?</p>
-</li>
-<li><p>Kik azok a felhasználók, akiknek a legtöbb érvényben lévő értesítése van?</p>
-</li>
-<li><p>Melyek azok a domain nevek, amelyek <em>Maxi</em> csomaggal rendelkeznek?</p>
-</li>
-<li><p>Melyik a legterheltebb adatközpont? (Foglalt GB / Látogatottság)</p>
-</li>
-<li><p>Kik azok a felhasználók, akik a határidő előtti napon fizették be a számlát? (és melyek ezek a számlák?)</p>
-</li>
-<li><p>PHP futtatás nélkül, mely weboldalak látogatottsága a legmagasabb?</p>
-</li>
+<li>Hány <em>.com</em> TLD-jű domain van beregisztrálva a rendszerbe?</li>
+<li>Hol találhatók Adatközpontok és mi a jeligéjük?</li>
+<li>Mi a 3 legtöbb szerverteremmel rendelkező város neve?</li>
+<li>Mely csomagok tartalmaznak PHP futtatási lehetőséget?</li>
+<li>Mely webtárhelyek rendelkeznek SSH eléréssel és sávszélességük nagyobb mint 1 Gigabit/s, illetve mikor lettek ezek létrehozva?</li>
+<li>Mely webtárhelyek nem rendelkezik egy Domain címmel sem?</li>
+<li>Van-e az <em>1</em>-es Id-val rendelkező felhasználónak nem kifizetett számlája és mi annak az azonosítója?</li>
+<li>Melyek azok a webtárhelyek, amikhez a kapcsolt domain név lejárt?</li>
+<li>Milyen kifizetések történtek <em>2019-09-12</em> - <em>2020-02-23</em> között regisztrált felhasználóknak? Melyik felhasználónak és mi volt a tranzakció azonosítója?</li>
+<li>Melyek azok az adatközpontok, ahol legalább a webtárhelyek fele rendelkezik adatbázissal, PHP-val és e-mail fiókkal is?</li>
+<li>Mely PHP futtatással rendelkező domainen lesz karbantartás a következő hónapban (30 nap), a <em>BUD1</em> adatközpontban?</li>
+<li>Mely <em>.hu</em> domain nevek voltak az utóbbi <em>2 hónapban</em> befizetve?</li>
+<li>Kik azok a felhasználók, akiknek a legtöbb érvényben lévő értesítése van?</li>
+<li>Melyek azok a domain nevek, amelyek <em>Maxi</em> csomaggal rendelkeznek?</li>
+<li>Melyik a legterheltebb adatközpontok? (Foglalt GB / Látogatottság)</li>
+<li>Kik azok a felhasználók, akik a határidő előtti napon fizették be a számlát? (és melyek ezek a számlák?)</li>
+<li>PHP futtatás nélkül, mely weboldalak látogatottsága a legmagasabb?</li>
 </ol>
 <div class="page-break"></div>
 
@@ -180,70 +189,54 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <div class="page-break"></div>
 
 <h2 id="relációs-séma">Relációs séma</h2>
-<center>
-
 <table>
 <thead>
 <tr>
 <th>Adatbázis</th>
 <th>Webtárhely (WebStorage)</th>
-<th></th>
 </tr>
 </thead>
 <tbody><tr>
 <td>Felhasználók</td>
 <td><strong>User</strong> (Id, FullName, UserName, Email, Password, Registration, Blocked, MaximumStorage)</td>
-<td></td>
 </tr>
 <tr>
 <td>Tárhely típus</td>
 <td><strong>StorageType</strong> (Id, SSHEnabled, PHPEnabled, MaximumEmailAccounts, MaximumFTPAccounts, MaximumDatabaseNumber, PHPMemoryLimit, MaximumPHPExecutionTime, CPanelIsEnabled, BaseCost, DataTrafficMultiplier)</td>
-<td></td>
 </tr>
 <tr>
 <td>Szerver központ</td>
 <td><strong>DataCenter</strong> (Id, Name, City, Number, Area, StorageCapacity)</td>
-<td></td>
 </tr>
 <tr>
 <td>Tárhely</td>
 <td><strong>Storage</strong> (Id, UserId, Creation, Expiration, TypeId, Size, MaximumDataTraffic, EmailStorageSize, DatabaseSize, DataCenterId, Cost, Name)</td>
-<td></td>
 </tr>
 <tr>
 <td>Domain név</td>
 <td><strong>Domain</strong> (Id, UserId, DomainAddress, StorageId, TLD, Registration, Expiration, NameServer1, NameServer2, NameServer3, NameServer4)</td>
-<td></td>
 </tr>
 <tr>
 <td>Költségek</td>
 <td><strong>Bill</strong> (Id, UserId, StorageId, DomainId, Date, Deadline, Cost, BillId)</td>
-<td></td>
 </tr>
 <tr>
 <td>Kifizetések</td>
 <td><strong>Payment</strong> (Id, UserId, Date, TransactionId, BillId)</td>
-<td></td>
 </tr>
 <tr>
 <td>Statisztika</td>
 <td><strong>Statistic</strong> (Id, DomainId, Month, Views, UniqueViewers)</td>
-<td></td>
 </tr>
 <tr>
 <td>Értesítések</td>
 <td><strong>Notification</strong> (Id, UserId, StorageId, DomainId, Creation, TimeFrameStart, TimeFrameEnd, Title, Message)</td>
-<td></td>
 </tr>
 </tbody></table>
-</center>
-
 <div class="page-break"></div>
 
 <h2 id="inputoutput-adatok-adattípusba-rendezve">Input/Output adatok adattípusba rendezve</h2>
 <h3 id="user">User</h3>
-<center>
-
 <table>
 <thead>
 <tr>
@@ -311,11 +304,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <td><code>5</code></td>
 </tr>
 </tbody></table>
-</center>
-
 <h3 id="storagetype">StorageType</h3>
-<center>
-
 <table>
 <thead>
 <tr>
@@ -411,11 +400,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <td></td>
 </tr>
 </tbody></table>
-</center>
+<div class="page-break"></div>
 
 <h3 id="datacenter">DataCenter</h3>
-<center>
-
 <table>
 <thead>
 <tr>
@@ -469,11 +456,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <td></td>
 </tr>
 </tbody></table>
-</center>
-
 <h3 id="storage">Storage</h3>
-<center>
-
 <table>
 <thead>
 <tr>
@@ -562,11 +545,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <td></td>
 </tr>
 </tbody></table>
-</center>
+<div class="page-break"></div>
 
 <h3 id="domain">Domain</h3>
-<center>
-
 <table>
 <thead>
 <tr>
@@ -655,11 +636,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <td></td>
 </tr>
 </tbody></table>
-</center>
-
 <h3 id="bill">Bill</h3>
-<center>
-
 <table>
 <thead>
 <tr>
@@ -727,11 +704,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <td></td>
 </tr>
 </tbody></table>
-</center>
-
 <h3 id="payment">Payment</h3>
-<center>
-
 <table>
 <thead>
 <tr>
@@ -778,11 +751,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <td></td>
 </tr>
 </tbody></table>
-</center>
-
 <h3 id="statistic">Statistic</h3>
-<center>
-
 <table>
 <thead>
 <tr>
@@ -829,11 +798,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <td><code>0</code></td>
 </tr>
 </tbody></table>
-</center>
-
 <h3 id="notification">Notification</h3>
-<center>
-
 <table>
 <thead>
 <tr>
@@ -908,13 +873,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <td></td>
 </tr>
 </tbody></table>
-</center>
-
-<div class="page-break"></div>
-
 <h2 id="elsődleges-kulcsok">Elsődleges kulcsok</h2>
-<center>
-
 <table>
 <thead>
 <tr>
@@ -959,14 +918,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <td>Id</td>
 </tr>
 </tbody></table>
-</center>
-
 <div class="page-break"></div>
 
 <h2 id="megszorítások">Megszorítások</h2>
 <h3 id="idegen-kulcsok">Idegen kulcsok</h3>
-<center>
-
 <table>
 <thead>
 <tr>
@@ -999,11 +954,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <td>UserId, StorageId, DomainId</td>
 </tr>
 </tbody></table>
-</center>
-
 <h3 id="egyedi-kulcsok">Egyedi kulcsok</h3>
-<center>
-
 <table>
 <thead>
 <tr>
@@ -1040,12 +991,109 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <td>DomainId, Month</td>
 </tr>
 </tbody></table>
-</center>
+<div class="page-break"></div>
 
 <h3 id="egyéb-megszorítások">Egyéb megszorítások</h3>
-<p>(Transaction Id, BillId, stb.)</p>
-<p>Procedures ?
-Triggers ?</p>
+<ul>
+<li>Felhasználók<ul>
+<li>E-mail cím<ul>
+<li>Név: A-Za-z0-9 ! # $ % &amp; ' * + - / = ? ^ _ ` { | (1-64 karakter)</li>
+<li>@</li>
+<li>Domain: A-Za-z0-9 - . (1-253 karakter)</li>
+<li>TLD: A-Za-z (2+ karakter)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Domain<ul>
+<li>Domain név<ul>
+<li>A-Za-z0-9 - . (1-253 karakter)</li>
+</ul>
+</li>
+<li>Lejárati dátum<ul>
+<li>Regisztrációs dátum után</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Storage<ul>
+<li>Lejárat<ul>
+<li>Létrehozva után</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>StorageTypes<ul>
+<li>Adatbázisok száma, PHP memória limit, PHP max. végrehajtási idő<ul>
+<li>Csak engedélyezett PHP mellett kitölthető</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Bill<ul>
+<li>Számla azonosító<ul>
+<li>BBKT-[0-9]{4}-[0-9]{8}</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Payment<ul>
+<li>Tranzakció azonosító<ul>
+<li>[0-9]*</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Notification<ul>
+<li>Időkeret kezdet<ul>
+<li>jüvőbeli időpont</li>
+<li>kisebb mint Időkeret vége</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="page-break"></div>
+
+<h3 id="tárolt-eljárások">Tárolt eljárások</h3>
+<ul>
+<li><code>GetStoragePrice</code> - Tárhely ár kiszámítása</li>
+<li><code>AreLimitsReached</code> - Limitek ellenőrzése<ul>
+<li>van-e befizetetlen számla</li>
+<li>felhasználói limit nem telt-e be</li>
+</ul>
+</li>
+</ul>
+<h3 id="triggerek">Triggerek</h3>
+<ul>
+<li><code>CheckLimitsStorage</code> - Új tárhely létrehozás limitek ellenőrzése<ul>
+<li><code>Storage</code> tábla - Beszúrás előtt</li>
+<li><code>AreLimitsReached</code></li>
+</ul>
+</li>
+<li><code>CheckLimitsDomain</code> - Új domain regisztráció limitek ellenőrzése<ul>
+<li><code>Domain</code> tábla - Beszúrás előtt</li>
+<li><code>AreLimitsReached</code></li>
+</ul>
+</li>
+<li><code>CanEditUserProperties</code> - Felhasználó szerkesztés esetén, adott mezők szerkesztésének tiltása<ul>
+<li><code>User</code> tábla - Frissítés előtt</li>
+<li>A <em>UserName</em>, <em>Email</em>, <em>Registration</em> mezők nem szerkeszthetők</li>
+</ul>
+</li>
+</ul>
+<div class="page-break"></div>
+
+<h2 id="kód-elérése">Kód elérése</h2>
+<ul>
+<li>Amennyiben ez a fájl zip fájlba volt csomagolva, úgy az SQL fájlok is mellékelve vannak.</li>
+<li>Egyéb esetben minden fájl a Github repositoryban elérhető: <a href="https://github.com/sze-plusplusplus/adatbazisok">https://github.com/sze-plusplusplus/adatbazisok</a></li>
+<li>Aktuális PDF fájl (automatikusan generált): <a href="https://sze-plusplusplus.github.io/adatbazisok/webtarhely_adatbazis_plusplusplus.pdf">https://sze-plusplusplus.github.io/adatbazisok/webtarhely_adatbazis_plusplusplus.pdf</a></li>
+</ul>
+<hr>
+<small>
+Frissítve: 2021. 03. 02. 22:34:21 Feltöltő: bencebaranyai - Commit: df792c05d5b36eda2778a94d200e71b28d964eaf
+</small>
 
 
 
