@@ -49,11 +49,15 @@
 - Bill
   - Számla azonosító
     - Regex: `BBKT-[0-9]{4}-[0-9]{8}`
+  - Számla kötődés
+    - Legalább az egyiknek szerepelnie a három közül: `UserId`, `StorageId`, `DomainId`
 - Payment
   - Tranzakció azonosító
     - Regex: `[0-9]+`
 - Notification
   - Időkeret kezdet
     - kisebb mint Időkeret vége
+  - Tulajdonosi kapcsolat
+    - Legalább az egyiknek szerepelnie a három közül: `UserId`, `StorageId`, `DomainId`
 
 <div class="page-break"></div>

@@ -42,7 +42,7 @@ CREATE TABLE DataCenter(
     Id int NOT NULL AUTO_INCREMENT,
     Name varchar(30) NOT NULL,
     City varchar(80) NOT NULL,
-    Number int NOT NULL,
+    Number int(2) NOT NULL,
     Area decimal NULL,
     StorageCapacity int NOT NULL,
     PRIMARY KEY (Id),
@@ -94,7 +94,7 @@ CREATE TABLE Domain(
 DROP TABLE IF EXISTS Bill;
 CREATE TABLE Bill(
     Id int NOT NULL AUTO_INCREMENT,
-    UserId int NOT NULL,
+    UserId int NULL,
     StorageId int NULL,
     DomainId int NULL,
     Date datetime NOT NULL DEFAULT NOW(),
@@ -136,7 +136,7 @@ CREATE TABLE Statistic(
 DROP TABLE IF EXISTS Notification;
 CREATE TABLE Notification(
     Id int NOT NULL AUTO_INCREMENT,
-    UserId int NOT NULL,
+    UserId int NULL,
     StorageId int NULL,
     DomainId int NULL,
     Creation datetime NOT NULL DEFAULT NOW(),
@@ -179,6 +179,11 @@ SET _has_invoice = (SELECT COUNT(Id) FROM Bill WHERE UserId=_user) <> (SELECT CO
 
 RETURN _limited OR _has_invoice;
 END;;
+
+CREATE FUNCTION `CenterName` (`_city` varchar(80), `_number` int(2)) RETURNS varchar(82)
+BEGIN
+   RETURN CONCAT(_city, ' - ', _number);
+END ;;
 
 /**
     TRIGGERS
@@ -249,3 +254,11 @@ ALTER TABLE Payment
 ALTER TABLE Notification
     ADD CONSTRAINT chk_notification_dates
     CHECK (TimeFrameEnd > TimeFrameStart);
+
+ALTER TABLE Bill
+    ADD CONSTRAINT chk_bill_user_storage_domain_id
+    CHECK (UserId IS NOT NULL OR StorageId IS NOT NULL OR DomainId IS NOT NULL);
+
+ALTER TABLE Notification
+    ADD CONSTRAINT chk_notification_user_storage_domain_id
+    CHECK (UserId IS NOT NULL OR StorageId IS NOT NULL OR DomainId IS NOT NULL);

@@ -39,7 +39,7 @@
 | Id              | int     |       |            |                       |
 | Name            | varchar |    30 |            |                       |
 | City            | varchar |    80 |            |                       |
-| Number          | int     |       |            |                       |
+| Number          | int     |     2 |            |                       |
 | Area            | decimal |     X |            |                       |
 | StorageCapacity | int     |       |            |                       |
 
@@ -82,7 +82,7 @@
 | Mező      | Típus    | Hossz | Opcionális | Alapértelmezett érték               |
 | --------- | -------- | ----: | :--------: | ----------------------------------- |
 | Id        | int      |       |            |                                     |
-| UserId    | int      |       |            |                                     |
+| UserId    | int      |       |     X      |                                     |
 | StorageId | int      |       |     X      |                                     |
 | DomainId  | int      |       |     X      |                                     |
 | Date      | datetime |       |            | `NOW()`                             |
@@ -115,7 +115,7 @@
 | Mező           | Típus    | Hossz | Opcionális | Alapértelmezett érték |
 | -------------- | -------- | ----: | :--------: | --------------------- |
 | Id             | int      |       |            |                       |
-| UserId         | int      |       |            |                       |
+| UserId         | int      |       |     X      |                       |
 | StorageId      | int      |       |     X      |                       |
 | DomainId       | int      |       |     X      |                       |
 | Creation       | datetime |       |            | `NOW()`               |

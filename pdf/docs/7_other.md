@@ -4,6 +4,7 @@
 - `AreLimitsReached` - Limitek ellenőrzése
   - van-e befizetetlen számla
   - felhasználói limit nem telt-e be
+- `CenterName` - Központ jeligéjének előállítása
 
 ### Triggerek
 

@@ -1,11 +1,11 @@
 /* Questions */
 
-/* Data centers listája név alapján ASC rendezve és város szám füzött kódda */
-SELECT dc.Name, CONCAT(dc.City, '-', dc.Number) as Keyword FROM DataCenter dc
+/* Data centers listája név alapján ASC rendezve és város szám füzött kóddal */
+SELECT dc.Name, CenterName(dc.City, dc.Number) as Keyword FROM DataCenter dc
 ORDER BY Name;
 
-/* A top 3 legtöbb központtal rendelkező városok nevei (Csökkenő sorrendben, darabszámmal) */
-SELECT dc.City, COUNT(dc.Id) as Count FROM DataCenter dc
+/* A top 3 legtöbb központtal rendelkező központok nevei (Csökkenő sorrendben, darabszámmal) */
+SELECT CenterName(dc.City, dc.Number) as Center, COUNT(dc.Id) as Count FROM DataCenter dc
 GROUP BY dc.City
 ORDER BY Count DESC, dc.City
 LIMIT 3;
@@ -15,7 +15,7 @@ SELECT st.Name FROM StorageType st
 WHERE st.PHPEnabled;
 
 /* A `.com` domainek száma */
-SELECT COUNT(d.TLD) as C FROM Domain d
+SELECT COUNT(d.TLD) as Addresses FROM Domain d
 GROUP BY d.TLD
 HAVING d.TLD LIKE 'com';
 
@@ -35,7 +35,7 @@ LEFT JOIN Domain d ON d.StorageId = s.Id
 GROUP BY s.Name
 HAVING COUNT(d.Id) = 0;
 
-/* Van-e az adott (1-es Id) felhasználónak nem kifizetett tartozása */
+/* Van-e az adott (1-es Id) felhasználónak közvetlen nem kifizetett tartozása */
 SELECT b.BillId FROM Bill b
 LEFT JOIN Payment p ON p.BillId = b.Id
 WHERE b.UserId = 1 && p.Id IS NULL && b.Deadline >= NOW();
