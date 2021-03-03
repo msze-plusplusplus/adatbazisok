@@ -166,11 +166,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <ol>
 <li>Hány <em>.com</em> TLD-jű domain van beregisztrálva a rendszerbe?</li>
 <li>Hol találhatók Adatközpontok és mi a jeligéjük?</li>
-<li>Mi a 3 legtöbb szerverteremmel rendelkező város neve?</li>
+<li>Mi a 3 legtöbb szerverteremmel rendelkező központ neve?</li>
 <li>Mely csomagok tartalmaznak PHP futtatási lehetőséget?</li>
 <li>Mely webtárhelyek rendelkeznek SSH eléréssel és sávszélességük nagyobb mint 1 Gigabit/s, illetve mikor lettek ezek létrehozva?</li>
 <li>Mely webtárhelyek nem rendelkezik egy Domain címmel sem?</li>
-<li>Van-e az <em>1</em>-es Id-val rendelkező felhasználónak nem kifizetett számlája és mi annak az azonosítója?</li>
+<li>Van-e az <em>1</em>-es Id-val rendelkező felhasználónak közvetlen nem kifizetett számlája és mi annak az azonosítója?</li>
 <li>Melyek azok a webtárhelyek, amikhez a kapcsolt domain név lejárt?</li>
 <li>Milyen kifizetések történtek <em>2019-09-12</em> - <em>2020-02-23</em> között regisztrált felhasználóknak? Melyik felhasználónak és mi volt a tranzakció azonosítója?</li>
 <li>Melyek azok az adatközpontok, ahol legalább a webtárhelyek fele rendelkezik adatbázissal, PHP-val és e-mail fiókkal is?</li>
@@ -437,7 +437,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <tr>
 <td>Number</td>
 <td>int</td>
-<td align="right"></td>
+<td align="right">2</td>
 <td align="center"></td>
 <td></td>
 </tr>
@@ -658,7 +658,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <td>UserId</td>
 <td>int</td>
 <td align="right"></td>
-<td align="center"></td>
+<td align="center">X</td>
 <td></td>
 </tr>
 <tr>
@@ -820,7 +820,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <td>UserId</td>
 <td>int</td>
 <td align="right"></td>
-<td align="center"></td>
+<td align="center">X</td>
 <td></td>
 </tr>
 <tr>
@@ -1037,6 +1037,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>Regex: <code>BBKT-[0-9]{4}-[0-9]{8}</code></li>
 </ul>
 </li>
+<li>Számla kötődés<ul>
+<li>Legalább az egyiknek szerepelnie a három közül: <code>UserId</code>, <code>StorageId</code>, <code>DomainId</code></li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Payment<ul>
@@ -1049,6 +1053,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>Notification<ul>
 <li>Időkeret kezdet<ul>
 <li>kisebb mint Időkeret vége</li>
+</ul>
+</li>
+<li>Tulajdonosi kapcsolat<ul>
+<li>Legalább az egyiknek szerepelnie a három közül: <code>UserId</code>, <code>StorageId</code>, <code>DomainId</code></li>
 </ul>
 </li>
 </ul>
@@ -1064,6 +1072,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>felhasználói limit nem telt-e be</li>
 </ul>
 </li>
+<li><code>CenterName</code> - Központ jeligéjének előállítása</li>
 </ul>
 <h3 id="triggerek">Triggerek</h3>
 <ul>
@@ -1093,7 +1102,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </ul>
 <hr>
 <small>
-Frissítve: 2021. 03. 03. 21:13:34 Feltöltő: bencebaranyai - Commit: f75783f08290e7bfc81158f14f30c6c352e60e56
+Frissítve: 2021. 03. 03. 21:56:09 Feltöltő: karcagtamas - Commit: 0dc9810a32d8db35752843d96408d483c3c6e410
 </small>
 
 
