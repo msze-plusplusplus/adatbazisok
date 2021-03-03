@@ -150,7 +150,6 @@ CREATE TABLE Notification(
     FOREIGN KEY (DomainId) REFERENCES Domain(Id)
 );
 
-DROP FUNCTION `GetStoragePrice`;
 DELIMITER ;;
 CREATE FUNCTION `GetStoragePrice` (`_type` int, `_size` int, `_traffic` int, `_email_storage` int, `_database_size` int) RETURNS decimal(10,0) unsigned
 BEGIN
@@ -163,12 +162,10 @@ SET _price = _base;
 SET _price = _price + ((_size + _email_storage + _database_size) * 0.01 * _base / 500);
 SET _price = _price + ((SELECT DataTrafficMultiplier FROM StorageType WHERE Id=_type) * _traffic * 0.1);
 
-
 RETURN _price;
 END;;
 DELIMITER ;
 
-DROP FUNCTION `AreLimitsReached`;
 DELIMITER ;;
 CREATE FUNCTION `AreLimitsReached` (`_user` int) RETURNS bool
 BEGIN
@@ -179,5 +176,41 @@ SET _limited = (SELECT (Blocked OR MaximumStorage <= COUNT(s.Id)) AS limited FRO
 SET _has_invoice = (SELECT COUNT(Id) FROM Bill WHERE UserId=_user) <> (SELECT COUNT(Id) FROM Payment WHERE UserId=_user);
 
 RETURN _limited OR _has_invoice;
+END;;
+DELIMITER ;
+
+DELIMITER ;;
+CREATE TRIGGER `CanEditUserProperties` BEFORE UPDATE ON `User` FOR EACH ROW
+BEGIN
+
+IF OLD.UserName <> NEW.UserName OR OLD.Email <> NEW.Email OR OLD.Registration <> NEW.Registration
+THEN
+    SIGNAL SQLSTATE 'W7001' SET MESSAGE_TEXT = 'User properties (UserName, Email, Registration) cannot be updated!';
+END IF;
+
+END;;
+DELIMITER ;
+
+DELIMITER ;;
+CREATE TRIGGER `CheckLimitsStorage` BEFORE INSERT ON `Storage` FOR EACH ROW
+BEGIN
+
+IF AreLimitsReached(NEW.UserId)
+THEN
+    SIGNAL SQLSTATE 'W7002' SET MESSAGE_TEXT = 'User limits reached or has unpaid invoice!';
+END IF;
+
+END;;
+DELIMITER ;
+
+DELIMITER ;;
+CREATE TRIGGER `CheckLimitsDomain` BEFORE INSERT ON `Domain` FOR EACH ROW
+BEGIN
+
+IF AreLimitsReached(NEW.UserId)
+THEN
+    SIGNAL SQLSTATE 'W7003' SET MESSAGE_TEXT = 'User limits reached or has unpaid invoice!';
+END IF;
+
 END;;
 DELIMITER ;
