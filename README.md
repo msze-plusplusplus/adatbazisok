@@ -21,6 +21,21 @@
 
 ## Webtárhely/Domain kezelés
 
+- [x] Adatbázis létrehozás
+- [x] Táblák létrehozása
+- [x] Elsődleges/Idegen kulcsok
+- [x] Check constraintek
+- [x] Egyedi kulcsok
+- [x] Tárolt függvények
+- [x] Triggerek
+- [ ] Alap adatok (részlegesen megvan)
+- [ ] Lekérdezések (részlegesen megvan)
+- [ ] Adathozzáadó eljárások
+- [ ] Egyed-Kapcsolat diagram
+- [ ] GUI tervek
+
+---
+
 ### User
 
 - Teljes név
