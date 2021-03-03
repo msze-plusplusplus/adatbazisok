@@ -997,10 +997,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <ul>
 <li>Felhasználók<ul>
 <li>E-mail cím<ul>
-<li>Név: A-Za-z0-9 ! # $ % &amp; ' * + - / = ? ^ _ ` { | (1-64 karakter)</li>
+<li>Név: A-Za-z0-9 + - = _ (1-64 karakter)</li>
 <li>@</li>
 <li>Domain: A-Za-z0-9 - . (1-253 karakter)</li>
 <li>TLD: A-Za-z (2+ karakter)</li>
+<li>Regex: <code>[A-Za-z0-9\+\-\=\_]{1,64}@[A-Za-z0-9\-\.]{1,253}\.[A-Za-z]{2,}</code></li>
 </ul>
 </li>
 </ul>
@@ -1008,6 +1009,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>Domain<ul>
 <li>Domain név<ul>
 <li>A-Za-z0-9 - . (1-253 karakter)</li>
+<li>Regex: <code>[A-Za-z0-9\-\.]{1,253}</code></li>
 </ul>
 </li>
 <li>Lejárati dátum<ul>
@@ -1032,21 +1034,20 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </li>
 <li>Bill<ul>
 <li>Számla azonosító<ul>
-<li>BBKT-[0-9]{4}-[0-9]{8}</li>
+<li>Regex: <code>BBKT-[0-9]{4}-[0-9]{8}</code></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Payment<ul>
 <li>Tranzakció azonosító<ul>
-<li>[0-9]*</li>
+<li>Regex: <code>[0-9]+</code></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Notification<ul>
 <li>Időkeret kezdet<ul>
-<li>jüvőbeli időpont</li>
 <li>kisebb mint Időkeret vége</li>
 </ul>
 </li>
@@ -1092,7 +1093,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </ul>
 <hr>
 <small>
-Frissítve: 2021. 03. 02. 22:34:21 Feltöltő: bencebaranyai - Commit: df792c05d5b36eda2778a94d200e71b28d964eaf
+Frissítve: 2021. 03. 03. 20:52:16 Feltöltő: bencebaranyai - Commit: 5005d1e3032fb849a9b6d4a09420313011c66307
 </small>
 
 
