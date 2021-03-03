@@ -11,7 +11,7 @@
 | Password       | varchar  |   120 |            |                       |
 | Registration   | datetime |       |            | `NOW()`               |
 | Blocked        | boolean  |       |            | `false`               |
-| MaximumStorage | int      |       |            | `5`                   |
+| MaximumStorage | int      |     4 |            | `5`                   |
 
 ### StorageType
 
@@ -20,14 +20,14 @@
 | Id                      | int     |       |            |                       |
 | SSHEnabled              | boolean |       |            | `false`               |
 | PHPEnabled              | boolean |       |            | `false`               |
-| MaximumEmailAccounts    | int     |       |     X      |                       |
-| MaximumFTPAccounts      | int     |       |     X      |                       |
-| MaximumDatabaseNumber   | int     |       |     X      |                       |
-| PHPMemoryLimit          | int     |       |     X      |                       |
-| MaximumPHPExecutionTime | int     |       |     X      |                       |
+| MaximumEmailAccounts    | int     |     5 |     X      |                       |
+| MaximumFTPAccounts      | int     |     5 |     X      |                       |
+| MaximumDatabaseNumber   | int     |     5 |     X      |                       |
+| PHPMemoryLimit          | int     |     6 |     X      |                       |
+| MaximumPHPExecutionTime | int     |     3 |     X      |                       |
 | CPaneldIsEnabled        | boolean |       |            | `false`               |
 | BaseCost                | decimal |       |            |                       |
-| DataTrafficMultiplier   | int     |       |            | `1`                   |
+| DataTrafficMultiplier   | int     |     3 |            | `1`                   |
 | Name                    | varchar |   120 |            |                       |
 
 <div class="page-break"></div>
@@ -52,10 +52,10 @@
 | Creation           | datetime |       |            | `NOW()`                            |
 | Expiration         | datetime |       |            | `DATE_ADD(NOW(), INTERVAL 1 YEAR)` |
 | TypeId             | int      |       |            |                                    |
-| Size               | int      |       |            |                                    |
-| MaximumDataTraffic | int      |       |            |                                    |
-| EmailStorageSize   | int      |       |     X      |                                    |
-| DatabaseSize       | int      |       |     X      |                                    |
+| Size               | int      |     6 |            |                                    |
+| MaximumDataTraffic | int      |     6 |            |                                    |
+| EmailStorageSize   | int      |     6 |     X      |                                    |
+| DatabaseSize       | int      |     6 |     X      |                                    |
 | Cost               | decimal  |       |            |                                    |
 | Name               | varchar  |    80 |            |                                    |
 
@@ -67,15 +67,15 @@
 | ------------- | -------- | ----: | :--------: | ---------------------------------- |
 | Id            | int      |       |            |                                    |
 | UserId        | int      |       |            |                                    |
-| DomainAddress | varchar  |   100 |            |                                    |
+| DomainAddress | varchar  |   253 |            |                                    |
 | StorageId     | int      |       |     X      |                                    |
-| TLD           | varchar  |     5 |            |                                    |
+| TLD           | varchar  |    63 |            |                                    |
 | Registration  | datetime |       |            | `NOW()`                            |
 | Expiration    | datetime |       |            | `DATE_ADD(NOW(), INTERVAL 1 YEAR)` |
-| NameServer1   | varchar  |   100 |            |                                    |
-| NameServer2   | varchar  |   100 |     X      |                                    |
-| NameServer3   | varchar  |   100 |     X      |                                    |
-| NameServer4   | varchar  |   100 |     X      |                                    |
+| NameServer1   | varchar  |   253 |            |                                    |
+| NameServer2   | varchar  |   253 |     X      |                                    |
+| NameServer3   | varchar  |   253 |     X      |                                    |
+| NameServer4   | varchar  |   253 |     X      |                                    |
 
 ### Bill
 
@@ -88,7 +88,7 @@
 | Date      | datetime |       |            | `NOW()`                             |
 | Deadline  | datetime |       |            | `DATE_ADD(NOW(), INTERVAL 1 MONTH)` |
 | Cost      | decimal  |       |            |                                     |
-| BillId    | varchar  |   100 |            |                                     |
+| BillId    | varchar  |    18 |            |                                     |
 
 ### Payment
 
@@ -97,7 +97,7 @@
 | Id             | int      |       |            |                       |
 | UserId         | int      |       |            |                       |
 | Date           | datetime |       |            | `NOW()`               |
-| TranscactionId | varchar  |   100 |            |                       |
+| TranscactionId | varchar  |    30 |            |                       |
 | BillId         | int      |       |            |                       |
 
 ### Statistic
