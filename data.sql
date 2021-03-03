@@ -12,8 +12,8 @@ VALUES ('Europe Main', 'Frankfurt', 1, NULL, 1000),
 
 INSERT INTO StorageType(SSHEnabled, PHPEnabled, MaximumEmailAccounts, MaximumFTPAccounts, MaximumDatabaseNumber, PHPMemoryLimit, MaximumPHPExecutionTime, CPanelIsEnabled, BaseCost, DataTrafficMultiplier, Name)
 VALUES (true, true, 100, 100, 100, 1024, 1, true, 200000, 2, 'High End'),
-       (false, false, 0, 0, 0, 0, 0, true, 100, 1.2, 'Low budget'),
-       (true, false, 10, 0, 2, 0, 0, true, 100000, 1, 'Low'),
+       (false, false, 0, 0, NULL, NULL, NULL, true, 100, 1.2, 'Low budget'),
+       (true, false, 10, 0, NULL, NULL, NULL, true, 100000, 1, 'Low'),
        (true, true, 10, 0, 2, 128, 1, true, 100000, 1, 'Low');
 
 INSERT INTO User (FullName, UserName, Email, Password)

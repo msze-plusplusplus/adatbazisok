@@ -29,13 +29,15 @@
 
 - Felhasználók
   - E-mail cím
-    - Név: A-Za-z0-9 ! # $ % & ' \* + - / = ? ^ \_ ` { | (1-64 karakter)
+    - Név: A-Za-z0-9 + - = \_ (1-64 karakter)
     - @
     - Domain: A-Za-z0-9 - . (1-253 karakter)
     - TLD: A-Za-z (2+ karakter)
+    - Regex: `[A-Za-z0-9\+\-\=\_]{1,64}@[A-Za-z0-9\-\.]{1,253}\.[A-Za-z]{2,}`
 - Domain
   - Domain név
     - A-Za-z0-9 - . (1-253 karakter)
+    - Regex: `[A-Za-z0-9\-\.]{1,253}`
   - Lejárati dátum
     - Regisztrációs dátum után
 - Storage
@@ -46,13 +48,12 @@
     - Csak engedélyezett PHP mellett kitölthető
 - Bill
   - Számla azonosító
-    - BBKT-[0-9]{4}-[0-9]{8}
+    - Regex: `BBKT-[0-9]{4}-[0-9]{8}`
 - Payment
   - Tranzakció azonosító
-    - [0-9]\*
+    - Regex: `[0-9]+`
 - Notification
   - Időkeret kezdet
-    - jüvőbeli időpont
     - kisebb mint Időkeret vége
 
 <div class="page-break"></div>

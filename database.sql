@@ -15,7 +15,7 @@ CREATE TABLE User (
     Password varchar(120) NOT NULL,
     Registration datetime NOT NULL DEFAULT NOW(),
     Blocked boolean NOT NULL DEFAULT false,
-    MaximumStorage int NOT NULL DEFAULT 5,
+    MaximumStorage int(4) NOT NULL DEFAULT 5,
     PRIMARY KEY (Id),
     UNIQUE KEY (UserName, Email)
 );
@@ -25,14 +25,14 @@ CREATE TABLE StorageType(
     Id int NOT NULL AUTO_INCREMENT,
     SSHEnabled boolean NOT NULL DEFAULT false,
     PHPEnabled boolean NOT NULL DEFAULT false,
-    MaximumEmailAccounts int NULL,
-    MaximumFTPAccounts int NULL,
-    MaximumDatabaseNumber int NULL,
-    PHPMemoryLimit int null,
-    MaximumPHPExecutionTime int null,
+    MaximumEmailAccounts int(5) NULL,
+    MaximumFTPAccounts int(5) NULL,
+    MaximumDatabaseNumber int(5) NULL,
+    PHPMemoryLimit int(6) null,
+    MaximumPHPExecutionTime int(3) null,
     CPanelIsEnabled boolean NOT NULL DEFAULT false,
     BaseCost decimal NOT NULL,
-    DataTrafficMultiplier int NOT NULL DEFAULT 1,
+    DataTrafficMultiplier int(3) NOT NULL DEFAULT 1,
     Name varchar(120) NOT NULL,
     PRIMARY KEY (Id)
 );
@@ -56,10 +56,10 @@ CREATE TABLE Storage(
     Creation datetime NOT NULL DEFAULT NOW(),
     Expiration datetime NOT NULL DEFAULT DATE_ADD(NOW(), INTERVAL 1 YEAR),
     TypeId int NOT NULL,
-    Size int NOT NULL,
-    MaximumDataTraffic int NOT NULL,
-    EmailStorageSize int NULL,
-    DatabaseSize int null,
+    Size int(6) NOT NULL,
+    MaximumDataTraffic int(6) NOT NULL,
+    EmailStorageSize int(6) NULL,
+    DatabaseSize int(6) null,
     DataCenterId int NOT NULL,
     Cost decimal NOT NULL,
     Name varchar(80) NOT NULL,
@@ -75,15 +75,15 @@ DROP TABLE IF EXISTS Domain;
 CREATE TABLE Domain(
     Id int NOT NULL AUTO_INCREMENT,
     UserId int NOT NULL,
-    DomainAddress varchar(100) NOT NULL,
+    DomainAddress varchar(253) NOT NULL,
     StorageId int NULL,
-    TLD varchar(5) NOT NULL,
+    TLD varchar(63) NOT NULL,
     Registration datetime NOT NULL DEFAULT NOW(),
     Expiration datetime NOT NULL DEFAULT DATE_ADD(NOW(), INTERVAL 1 YEAR),
-    NameServer1 varchar(100) NOT NULL,
-    NameServer2 varchar(100) NULL,
-    NameServer3 varchar(100) NULL,
-    NameServer4 varchar(100) NULL,
+    NameServer1 varchar(253) NOT NULL,
+    NameServer2 varchar(253) NULL,
+    NameServer3 varchar(253) NULL,
+    NameServer4 varchar(253) NULL,
     PRIMARY KEY (Id),
     UNIQUE (DomainAddress, TLD),
     FOREIGN KEY (UserId) REFERENCES User(Id),
@@ -100,7 +100,7 @@ CREATE TABLE Bill(
     Date datetime NOT NULL DEFAULT NOW(),
     Deadline datetime NOT NULL DEFAULT DATE_ADD(NOW(), INTERVAL 1 MONTH),
     Cost decimal NOT NULL,
-    BillId varchar(100) NOT NULL,
+    BillId varchar(18) NOT NULL,
     PRIMARY KEY (Id),
     UNIQUE KEY (BillId),
     FOREIGN KEY (UserId) REFERENCES User(Id),
@@ -113,7 +113,7 @@ CREATE TABLE Payment(
     Id int NOT NULL AUTO_INCREMENT,
     UserId int NOT NULL,
     Date datetime NOT NULL DEFAULT NOW(),
-    TransactionId varchar(100) NOT NULL,
+    TransactionId varchar(30) NOT NULL,
     BillId int NOT NULL,
     PRIMARY KEY (Id),
     UNIQUE KEY (TransactionId),
@@ -150,7 +150,11 @@ CREATE TABLE Notification(
     FOREIGN KEY (DomainId) REFERENCES Domain(Id)
 );
 
+/**
+    FUNCTIONS
+**/
 DELIMITER ;;
+
 CREATE FUNCTION `GetStoragePrice` (`_type` int, `_size` int, `_traffic` int, `_email_storage` int, `_database_size` int) RETURNS decimal(10,0) unsigned
 BEGIN
 DECLARE _base decimal;
@@ -164,9 +168,7 @@ SET _price = _price + ((SELECT DataTrafficMultiplier FROM StorageType WHERE Id=_
 
 RETURN _price;
 END;;
-DELIMITER ;
 
-DELIMITER ;;
 CREATE FUNCTION `AreLimitsReached` (`_user` int) RETURNS bool
 BEGIN
 DECLARE _limited bool;
@@ -177,9 +179,11 @@ SET _has_invoice = (SELECT COUNT(Id) FROM Bill WHERE UserId=_user) <> (SELECT CO
 
 RETURN _limited OR _has_invoice;
 END;;
-DELIMITER ;
 
-DELIMITER ;;
+/**
+    TRIGGERS
+**/
+
 CREATE TRIGGER `CanEditUserProperties` BEFORE UPDATE ON `User` FOR EACH ROW
 BEGIN
 
@@ -189,9 +193,7 @@ THEN
 END IF;
 
 END;;
-DELIMITER ;
 
-DELIMITER ;;
 CREATE TRIGGER `CheckLimitsStorage` BEFORE INSERT ON `Storage` FOR EACH ROW
 BEGIN
 
@@ -201,9 +203,7 @@ THEN
 END IF;
 
 END;;
-DELIMITER ;
 
-DELIMITER ;;
 CREATE TRIGGER `CheckLimitsDomain` BEFORE INSERT ON `Domain` FOR EACH ROW
 BEGIN
 
@@ -213,4 +213,39 @@ THEN
 END IF;
 
 END;;
+
 DELIMITER ;
+
+/**
+    CHECK CONSTRAINTS
+**/
+
+ALTER TABLE User
+    ADD CONSTRAINT chk_user_email
+    CHECK (Email REGEXP '[A-Za-z0-9\+\-\=\_]{1,64}@[A-Za-z0-9\-\.]{1,253}\.[A-Za-z]{2,}');
+
+ALTER TABLE Domain
+    ADD CONSTRAINT chk_domain_domain
+    CHECK (DomainAddress REGEXP '[A-Za-z0-9\-\.]{1,253}'),
+    ADD CONSTRAINT chk_domain_expiration
+    CHECK (Expiration > Registration);
+
+ALTER TABLE Storage
+    ADD CONSTRAINT chk_storage_expiration
+    CHECK (Expiration > Creation);
+
+ALTER TABLE StorageType
+    ADD CONSTRAINT chk_storage_type_php
+    CHECK ((PHPEnabled=0 AND PHPMemoryLimit IS NULL AND MaximumPHPExecutionTime IS NULL AND MaximumDatabaseNumber IS NULL) OR PHPEnabled=1);
+
+ALTER TABLE Bill
+    ADD CONSTRAINT chk_bill_bill_id
+    CHECK (BillId REGEXP 'BBKT-[0-9]{4}-[0-9]{8}');
+
+ALTER TABLE Payment
+    ADD CONSTRAINT chk_payment_transaction_id
+    CHECK (TransactionId REGEXP '[0-9]+');
+
+ALTER TABLE Notification
+    ADD CONSTRAINT chk_notification_dates
+    CHECK (TimeFrameEnd > TimeFrameStart);
