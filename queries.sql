@@ -1,8 +1,8 @@
 /* Questions */
 
 /* Data centers listája név alapján ASC rendezve és város szám füzött kóddal */
-SELECT dc.Name, CenterName(dc.City, dc.Number) as Keyword FROM DataCenter dc
-ORDER BY Name;
+SELECT dc.City, CenterName(dc.City, dc.Number) as Keyword FROM DataCenter dc
+ORDER BY Keyword;
 
 /* A top 3 legtöbb központtal rendelkező központok nevei (Csökkenő sorrendben, darabszámmal) */
 SELECT CenterName(dc.City, dc.Number) as Center, COUNT(dc.Id) as Count FROM DataCenter dc
