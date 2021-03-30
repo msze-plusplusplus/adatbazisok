@@ -73,9 +73,32 @@ WHERE p.Date BETWEEN '2019-09-12' AND '2020-02-23';
 ```
 
 10. Melyek azok az adatközpontok, ahol legalább a webtárhelyek fele rendelkezik adatbázissal, PHP-val és e-mail fiókkal is?
+
+```sql
+SELECT CenterName(dc.City, dc.Number) AS Center FROM DataCenter dc
+INNER JOIN Storage s on dc.Id = s.DataCenterId
+INNER JOIN StorageType st on s.TypeId = st.Id
+WHERE st.PHPEnabled && st.MaximumEmailAccounts > 0
+GROUP BY dc.Id
+HAVING COUNT(s.Id) >= GetStorageNumber(dc.Id) / 2;
+```
+
 11. Mely PHP futtatással rendelkező domainen lesz karbantartás a következő hónapban (30 nap), a _BUD1_ adatközpontban?
 12. Mely _.hu_ domain nevek voltak az utóbbi _2 hónapban_ befizetve?
-13. Kik azok a felhasználók, akiknek a legtöbb érvényben lévő értesítése van?
+
+```sql
+SELECT DomainAddress(d.DomainAddress, d.TLD) as Domain FROM Domain d
+INNER JOIN Bill b on d.Id = b.DomainId
+INNER JOIN Payment p on b.Id = p.BillId
+WHERE d.TLD = 'hu' AND p.Date >= DATE_SUB(NOW(), INTERVAL 2 MONTH);
+```
+
+13. Az egyes felhasználók mennyi aktív értesítéssel rendelkeznek?
+
+```sql
+SELECT u.UserName, GetActiveUserNotifications(u.Id) Notifications FROM User u;
+```
+
 14. Melyek azok a domain nevek, amelyek _Maxi_ csomaggal rendelkeznek?
 15. Melyik a legterheltebb adatközpontok? (Foglalt GB / Látogatottság)
 16. Kik azok a felhasználók, akik a határidő előtti napon fizették be a számlát? (és melyek ezek a számlák?)

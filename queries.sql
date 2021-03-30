@@ -49,3 +49,27 @@ WHERE s.Expiration <= NOW();
 SELECT u.UserName, p.TransactionId FROM User u
 INNER JOIN Payment p ON u.Id = p.UserId
 WHERE p.Date BETWEEN '2019-09-12' AND '2020-02-23';
+
+/* Melyek azok az adatközpontok, ahol legalább a webtárhelyek fele rendelkezik adatbázissal, PHP-val és e-mail fiókkal is? */
+SELECT CenterName(dc.City, dc.Number) AS Center FROM DataCenter dc
+INNER JOIN Storage s on dc.Id = s.DataCenterId
+INNER JOIN StorageType st on s.TypeId = st.Id
+WHERE st.PHPEnabled && st.MaximumEmailAccounts > 0
+GROUP BY dc.Id
+HAVING COUNT(s.Id) >= GetStorageNumber(dc.Id) / 2;
+
+/* Mely PHP futtatással rendelkező domainen lesz karbantartás a következő hónapban (30 nap), a _BUD1_ adatközpontban? */
+SELECT * FROM Domain d
+INNER JOIN Storage s on d.StorageId = s.Id
+INNER JOIN StorageType st on s.TypeId = st.Id
+INNER JOIN DataCenter dc on s.DataCenterId = dc.Id
+WHERE dc.Name = 'BUD1' AND st.PHPEnabled; /* IDK */
+
+/* Mely _.hu_ domain nevek voltak az utóbbi _2 hónapban_ befizetve? */
+SELECT DomainAddress(d.DomainAddress, d.TLD) as Domain FROM Domain d
+INNER JOIN Bill b on d.Id = b.DomainId
+INNER JOIN Payment p on b.Id = p.BillId
+WHERE d.TLD = 'hu' AND p.Date >= DATE_SUB(NOW(), INTERVAL 2 MONTH);
+
+/* Az egyes felhasználók mennyi aktív értesítéssel rendelkeznek? */
+SELECT u.UserName, GetActiveUserNotifications(u.Id) Notifications FROM User u;

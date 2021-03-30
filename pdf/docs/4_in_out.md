@@ -123,3 +123,4 @@
 | TimeFrameEnd   | datetime |       |     X      |                       |
 | Title          | varchar  |   100 |            |                       |
 | Message        | longtext |       |            |                       |
+| IsActive       | boolean  |       |            | `true`                |

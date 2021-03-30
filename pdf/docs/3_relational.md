@@ -10,6 +10,6 @@
 | Költségek       | **Bill** (Id, UserId, StorageId, DomainId, Date, Deadline, Cost, BillId)                                                                                                                                 |
 | Kifizetések     | **Payment** (Id, UserId, Date, TransactionId, BillId)                                                                                                                                                    |
 | Statisztika     | **Statistic** (Id, DomainId, Month, Views, UniqueViewers)                                                                                                                                                |
-| Értesítések     | **Notification** (Id, UserId, StorageId, DomainId, Creation, TimeFrameStart, TimeFrameEnd, Title, Message)                                                                                               |
+| Értesítések     | **Notification** (Id, UserId, StorageId, DomainId, Creation, TimeFrameStart, TimeFrameEnd, Title, Message, IsActive)                                                                                               |
 
 <div class="page-break"></div>

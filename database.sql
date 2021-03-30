@@ -144,6 +144,7 @@ CREATE TABLE Notification(
     TimeFrameEnd datetime NULL,
     Title varchar(100) NOT NULL,
     Message longtext NOT NULL,
+    IsActive boolean NOT NULL DEFAULT TRUE,
     PRIMARY KEY (Id),
     FOREIGN KEY (UserId) REFERENCES User(Id),
     FOREIGN KEY (StorageId) REFERENCES Storage(Id),
@@ -183,6 +184,52 @@ END;;
 CREATE FUNCTION `CenterName` (`_city` varchar(80), `_number` int(2)) RETURNS varchar(82)
 BEGIN
    RETURN CONCAT(_city, ' - ', _number);
+END ;;
+
+CREATE FUNCTION `GetStorageNumber` (`_center` int) RETURNS int
+BEGIN
+    DECLARE _num int DEFAULT 0;
+    SET _num = (SELECT COUNT(ss.Id) FROM Storage ss
+                        WHERE ss.DataCenterId = _center);
+    RETURN _num;
+END ;;
+
+CREATE FUNCTION `DomainAddress` (`_address` varchar(253), `_tld` varchar(63)) RETURNS varchar(316)
+BEGIN
+    RETURN CONCAT(_address, '.', _tld);
+END ;;
+
+CREATE FUNCTION `GetActiveUserNotifications` (`_user` int) RETURNS int
+BEGIN
+    DECLARE _num int;
+
+    SET _num = (SELECT COUNT(n.Id) FROM User u
+        INNER JOIN Notification n on u.Id = n.UserId
+        WHERE n.IsActive AND u.Id = _user);
+
+    RETURN _num + GetActiveStorageNotificationsByUser(_user) + GetActiveDomainNotificationsByUser(_user);
+END ;;
+
+CREATE FUNCTION `GetActiveStorageNotificationsByUser` (`_user` int) RETURNS int
+BEGIN
+    DECLARE _num int;
+
+    SET _num = (SELECT COUNT(n.Id) FROM Storage s
+        INNER JOIN Notification n on s.Id = n.StorageId
+        WHERE n.IsActive AND s.UserId = _user);
+
+    RETURN _num;
+END ;;
+
+CREATE FUNCTION `GetActiveDomainNotificationsByUser` (`_user` int) RETURNS int
+BEGIN
+    DECLARE _num int;
+
+    SET _num = (SELECT COUNT(n.Id) FROM Domain d
+        INNER JOIN Notification n on d.Id = n.DomainId
+        WHERE n.IsActive AND d.UserId = _user);
+
+    RETURN _num;
 END ;;
 
 /**

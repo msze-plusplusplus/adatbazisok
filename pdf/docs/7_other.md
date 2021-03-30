@@ -5,6 +5,11 @@
   - van-e befizetetlen számla
   - felhasználói limit nem telt-e be
 - `CenterName` - Központ jeligéjének előállítása
+- `GetStorageNumber` - Visszaadja a tárolók számát a paraméterben megadott köztpont Id alapaján
+- `DomainAddress` - Domain cím előállítása a tagokból
+- `GetActiveUserNotifications` - Lekéri a felhasználóhoz tartozó összes aktív értesítésnek a darabszámát
+- `GetActiveDomainNotificationsByUser` - Lekéri a felhasználóhoz tartozó domain címekhez tartozó összes aktív értesítéseknek a darabszámát
+- `GetActiveStorageNotificationsByUser` - Lekéri a felhasználóhoz tartozó web tárhyelhez tartozó összes aktív értesítéseknek a darabszámát
 
 ### Triggerek
 
