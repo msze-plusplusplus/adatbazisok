@@ -210,9 +210,23 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Payment p <span class="hljs-keyword">ON</span> u.Id = p.UserId
 <span class="hljs-keyword">WHERE</span> p.Date <span class="hljs-keyword">BETWEEN</span> <span class="hljs-string">'2019-09-12'</span> <span class="hljs-keyword">AND</span> <span class="hljs-string">'2020-02-23'</span>;</code></pre><ol start="10">
 <li>Melyek azok az adatközpontok, ahol legalább a webtárhelyek fele rendelkezik adatbázissal, PHP-val és e-mail fiókkal is?</li>
+</ol>
+<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> CenterName(dc.City, dc.Number) <span class="hljs-keyword">AS</span> Center <span class="hljs-keyword">FROM</span> DataCenter dc
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-keyword">Storage</span> s <span class="hljs-keyword">on</span> dc.Id = s.DataCenterId
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> StorageType st <span class="hljs-keyword">on</span> s.TypeId = st.Id
+<span class="hljs-keyword">WHERE</span> st.PHPEnabled &amp;&amp; st.MaximumEmailAccounts &gt; <span class="hljs-number">0</span>
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> dc.Id
+<span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">COUNT</span>(s.Id) &gt;= GetStorageNumber(dc.Id) / <span class="hljs-number">2</span>;</code></pre><ol start="11">
 <li>Mely PHP futtatással rendelkező domainen lesz karbantartás a következő hónapban (30 nap), a <em>BUD1</em> adatközpontban?</li>
 <li>Mely <em>.hu</em> domain nevek voltak az utóbbi <em>2 hónapban</em> befizetve?</li>
-<li>Kik azok a felhasználók, akiknek a legtöbb érvényben lévő értesítése van?</li>
+</ol>
+<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> DomainAddress(d.DomainAddress, d.TLD) <span class="hljs-keyword">as</span> <span class="hljs-keyword">Domain</span> <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">Domain</span> d
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Bill b <span class="hljs-keyword">on</span> d.Id = b.DomainId
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Payment p <span class="hljs-keyword">on</span> b.Id = p.BillId
+<span class="hljs-keyword">WHERE</span> d.TLD = <span class="hljs-string">'hu'</span> <span class="hljs-keyword">AND</span> p.Date &gt;= <span class="hljs-keyword">DATE_SUB</span>(<span class="hljs-keyword">NOW</span>(), <span class="hljs-built_in">INTERVAL</span> <span class="hljs-number">2</span> <span class="hljs-keyword">MONTH</span>);</code></pre><ol start="13">
+<li>Az egyes felhasználók mennyi aktív értesítéssel rendelkeznek?</li>
+</ol>
+<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> u.UserName, GetActiveUserNotifications(u.Id) Notifications <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">User</span> u;</code></pre><ol start="14">
 <li>Melyek azok a domain nevek, amelyek <em>Maxi</em> csomaggal rendelkeznek?</li>
 <li>Melyik a legterheltebb adatközpontok? (Foglalt GB / Látogatottság)</li>
 <li>Kik azok a felhasználók, akik a határidő előtti napon fizették be a számlát? (és melyek ezek a számlák?)</li>
@@ -266,7 +280,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </tr>
 <tr>
 <td>Értesítések</td>
-<td><strong>Notification</strong> (Id, UserId, StorageId, DomainId, Creation, TimeFrameStart, TimeFrameEnd, Title, Message)</td>
+<td><strong>Notification</strong> (Id, UserId, StorageId, DomainId, Creation, TimeFrameStart, TimeFrameEnd, Title, Message, IsActive)</td>
 </tr>
 </tbody></table>
 <div class="page-break"></div>
@@ -908,6 +922,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <td align="center"></td>
 <td></td>
 </tr>
+<tr>
+<td>IsActive</td>
+<td>boolean</td>
+<td align="right"></td>
+<td align="center"></td>
+<td><code>true</code></td>
+</tr>
 </tbody></table>
 <h2 id="elsődleges-kulcsok">Elsődleges kulcsok</h2>
 <table>
@@ -1109,6 +1130,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </ul>
 </li>
 <li><code>CenterName</code> - Központ jeligéjének előállítása</li>
+<li><code>GetStorageNumber</code> - Visszaadja a tárolók számát a paraméterben megadott köztpont Id alapaján</li>
+<li><code>DomainAddress</code> - Domain cím előállítása a tagokból</li>
+<li><code>GetActiveUserNotifications</code> - Lekéri a felhasználóhoz tartozó összes aktív értesítésnek a darabszámát</li>
+<li><code>GetActiveDomainNotificationsByUser</code> - Lekéri a felhasználóhoz tartozó domain címekhez tartozó összes aktív értesítéseknek a darabszámát</li>
+<li><code>GetActiveStorageNotificationsByUser</code> - Lekéri a felhasználóhoz tartozó web tárhyelhez tartozó összes aktív értesítéseknek a darabszámát</li>
 </ul>
 <h3 id="triggerek">Triggerek</h3>
 <ul>
@@ -1138,7 +1164,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </ul>
 <hr>
 <small>
-Frissítve: 2021. 03. 21. 16:14:52 Feltöltő: karcagtamas - Commit: c15579c6846fb734b5e1b83cec3da31095524151
+Frissítve: 2021. 03. 30. 19:07:43 Feltöltő: karcagtamas - Commit: 07c8fbe5dd8576be194c82a8162efe6835ec9d11
 </small>
 
 
