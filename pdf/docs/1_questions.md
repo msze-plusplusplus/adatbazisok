@@ -84,6 +84,15 @@ HAVING COUNT(s.Id) >= GetStorageNumber(dc.Id) / 2;
 ```
 
 11. Mely PHP futtatással rendelkező domainen lesz karbantartás a következő hónapban (30 nap), a _BUD1_ adatközpontban?
+
+```sql
+SELECT DomainAddress(d.DomainAddress, d.TLD) AS Address FROM Domain d
+INNER JOIN Storage s on d.StorageId = s.Id
+INNER JOIN StorageType st on s.TypeId = st.Id
+INNER JOIN DataCenter dc on s.DataCenterId = dc.Id
+WHERE dc.Name = 'BUD1' AND st.PHPEnabled; /* Karban tartás? */
+```
+
 12. Mely _.hu_ domain nevek voltak az utóbbi _2 hónapban_ befizetve?
 
 ```sql
@@ -109,7 +118,25 @@ WHERE st.Name = 'Maxi';
 ```
 
 15. Melyik a legterheltebb adatközpontok? (Foglalt GB / Látogatottság)
+
+```sql
+SELECT CenterName(dt.City, dt.Number) AS Center FROM DataCenter dt
+INNER JOIN Storage s on dt.Id = s.DataCenterId
+INNER JOIN Domain d on s.Id = d.StorageId
+INNER JOIN Statistic stat on d.Id = stat.DomainId
+GROUP BY dt.Id
+ORDER BY SUM(s.DatabaseSize / stat.Views); /* Need fix */
+```
+
 16. Kik azok a felhasználók, akik a határidő előtti napon fizették be a számlát? (és melyek ezek a számlák?)
+
+```sql
+SELECT b.BillId, u.FullName FROM User u
+INNER JOIN Bill b on u.Id = b.UserId
+INNER JOIN Payment p on b.Id = p.BillId
+WHERE p.Date < b.Deadline AND p.Date > SUBDATE(b.Deadline, INTERVAL 1 DAY);
+```
+
 17. A top 5 PHP futtatás nélküli weboldalak és tulajdonosaik, amelyek látogatottsága a legmagasabb?
 
 ```sql

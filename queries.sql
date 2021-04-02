@@ -81,8 +81,18 @@ INNER JOIN StorageType st on s.TypeId = st.Id
 WHERE st.Name = 'Maxi';
 
 /* Melyik a legterheltebb adatközpontok? (Foglalt GB / Látogatottság) */
+SELECT CenterName(dt.City, dt.Number) AS Center FROM DataCenter dt
+INNER JOIN Storage s on dt.Id = s.DataCenterId
+INNER JOIN Domain d on s.Id = d.StorageId
+INNER JOIN Statistic stat on d.Id = stat.DomainId
+GROUP BY dt.Id
+ORDER BY SUM(s.DatabaseSize / stat.Views); /* Need fix */
 
 /* Kik azok a felhasználók, akik a határidő előtti napon fizették be a számlát? (és melyek ezek a számlák?) */
+SELECT b.BillId, u.FullName FROM User u
+INNER JOIN Bill b on u.Id = b.UserId
+INNER JOIN Payment p on b.Id = p.BillId
+WHERE p.Date < b.Deadline AND p.Date > SUBDATE(b.Deadline, INTERVAL 1 DAY);
 
 /* PHP futtatás nélkül, mely weboldalak látogatottsága a legmagasabb? */
 SELECT DomainAddress(d.DomainAddress, d.TLD) AS DomainAdd, u.FullName FROM Domain d
@@ -94,3 +104,10 @@ WHERE NOT st.PHPEnabled
 GROUP BY DomainAdd
 ORDER BY SUM(stat.Views) DESC
 LIMIT 5;
+
+/* Mely PHP futtatással rendelkező domainen lesz karbantartás a következő hónapban (30 nap), a _BUD1_ adatközpontban */
+SELECT DomainAddress(d.DomainAddress, d.TLD) AS Address FROM Domain d
+INNER JOIN Storage s on d.StorageId = s.Id
+INNER JOIN StorageType st on s.TypeId = st.Id
+INNER JOIN DataCenter dc on s.DataCenterId = dc.Id
+WHERE dc.Name = 'BUD1' AND st.PHPEnabled; /* Karban tartás? */
