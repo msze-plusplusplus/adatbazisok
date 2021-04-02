@@ -21,6 +21,8 @@
 
 ## Webtárhely/Domain kezelés
 
+### Feladatok
+
 - [x] Adatbázis létrehozás
 - [x] Táblák létrehozása
 - [x] Elsődleges/Idegen kulcsok

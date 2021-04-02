@@ -100,8 +100,28 @@ SELECT u.UserName, GetActiveUserNotifications(u.Id) Notifications FROM User u;
 ```
 
 14. Melyek azok a domain nevek, amelyek _Maxi_ csomaggal rendelkeznek?
+
+```sql
+SELECT DomainAddress(d.DomainAddress, d.TLD) as Address FROM Domain d
+INNER JOIN Storage s on d.StorageId = s.Id
+INNER JOIN StorageType st on s.TypeId = st.Id
+WHERE st.Name = 'Maxi';
+```
+
 15. Melyik a legterheltebb adatközpontok? (Foglalt GB / Látogatottság)
 16. Kik azok a felhasználók, akik a határidő előtti napon fizették be a számlát? (és melyek ezek a számlák?)
-17. PHP futtatás nélkül, mely weboldalak látogatottsága a legmagasabb?
+17. A top 5 PHP futtatás nélküli weboldalak és tulajdonosaik, amelyek látogatottsága a legmagasabb?
+
+```sql
+SELECT DomainAddress(d.DomainAddress, d.TLD) AS DomainAdd, u.FullName FROM Domain d
+INNER JOIN Storage s on d.StorageId = s.Id
+INNER JOIN StorageType st on s.TypeId = st.Id
+INNER JOIN Statistic stat on d.Id = stat.DomainId
+INNER JOIN User u on d.UserId = u.Id
+WHERE NOT st.PHPEnabled
+GROUP BY DomainAdd
+ORDER BY SUM(stat.Views) DESC
+LIMIT 5;
+```
 
 <div class="page-break"></div>

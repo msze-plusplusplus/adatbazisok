@@ -73,3 +73,24 @@ WHERE d.TLD = 'hu' AND p.Date >= DATE_SUB(NOW(), INTERVAL 2 MONTH);
 
 /* Az egyes felhasználók mennyi aktív értesítéssel rendelkeznek? */
 SELECT u.UserName, GetActiveUserNotifications(u.Id) Notifications FROM User u;
+
+/* Melyek azok a domain nevek, amelyek _Maxi_ csomaggal rendelkeznek? */
+SELECT DomainAddress(d.DomainAddress, d.TLD) as Address FROM Domain d
+INNER JOIN Storage s on d.StorageId = s.Id
+INNER JOIN StorageType st on s.TypeId = st.Id
+WHERE st.Name = 'Maxi';
+
+/* Melyik a legterheltebb adatközpontok? (Foglalt GB / Látogatottság) */
+
+/* Kik azok a felhasználók, akik a határidő előtti napon fizették be a számlát? (és melyek ezek a számlák?) */
+
+/* PHP futtatás nélkül, mely weboldalak látogatottsága a legmagasabb? */
+SELECT DomainAddress(d.DomainAddress, d.TLD) AS DomainAdd, u.FullName FROM Domain d
+INNER JOIN Storage s on d.StorageId = s.Id
+INNER JOIN StorageType st on s.TypeId = st.Id
+INNER JOIN Statistic stat on d.Id = stat.DomainId
+INNER JOIN User u on d.UserId = u.Id
+WHERE NOT st.PHPEnabled
+GROUP BY DomainAdd
+ORDER BY SUM(stat.Views) DESC
+LIMIT 5;
