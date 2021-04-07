@@ -232,6 +232,28 @@ BEGIN
     RETURN _num;
 END ;;
 
+CREATE FUNCTION `GetNextBillId` () RETURNS varchar(18)
+BEGIN
+    DECLARE _currYear int DEFAULT YEAR(NOW());
+
+    DECLARE _bill varchar(18);
+    DECLARE _number int DEFAULT 0;
+
+    SET _bill = (SELECT b.BillId FROM Bill b
+                    WHERE b.BillId LIKE CONCAT('%', _currYear, '%')
+                    ORDER BY b.BillId DESC
+                    LIMIT 1);
+
+    IF _bill IS NULL OR _bill = '' THEN
+        SET _number = 0;
+    ELSE
+        SET _number = CONVERT(SUBSTRING_INDEX(_bill, '-', -1), UNSIGNED INTEGER);
+    END IF ;
+
+    return CONCAT('BBKT-', _currYear, '-', LPAD(_number + 1, 8, '0'));
+END ;;
+
+
 /**
     TRIGGERS
 **/
@@ -254,6 +276,15 @@ THEN
     SIGNAL SQLSTATE 'W7002' SET MESSAGE_TEXT = 'User limits reached or has unpaid invoice!';
 END IF;
 
+SET NEW.Cost = GetStoragePrice(NEW.TypeId, NEW.Size, NEW.MaximumDataTraffic, NEW.EmailStorageSize, NEW.DatabaseSize);
+
+END;;
+
+CREATE TRIGGER `EditStorage` BEFORE UPDATE ON `Storage` FOR EACH ROW
+BEGIN
+
+SET NEW.Cost = GetStoragePrice(NEW.TypeId, NEW.Size, NEW.MaximumDataTraffic, NEW.EmailStorageSize, NEW.DatabaseSize);
+
 END;;
 
 CREATE TRIGGER `CheckLimitsDomain` BEFORE INSERT ON `Domain` FOR EACH ROW
@@ -264,6 +295,16 @@ THEN
     SIGNAL SQLSTATE 'W7003' SET MESSAGE_TEXT = 'User limits reached or has unpaid invoice!';
 END IF;
 
+END;;
+
+CREATE TRIGGER `AddBillId` BEFORE INSERT ON `Bill` FOR EACH ROW
+BEGIN
+    SET NEW.BillId = GetNextBillId();
+END;;
+
+CREATE TRIGGER `EditBillId` BEFORE UPDATE ON `Bill` FOR EACH ROW
+BEGIN
+    SET NEW.BillId = OLD.BillId;
 END;;
 
 DELIMITER ;
