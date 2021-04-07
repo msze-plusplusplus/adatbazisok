@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="assets/libs/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/vendor/charts/chartist-bundle/chartist.css"
+    />
+    <title>Webtárhely Menedzsment</title>
+  </head>
+
+  <body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+      <!-- ============================================================== -->
+      <!-- navbar -->
+      <!-- ============================================================== -->
+      <div class="dashboard-header">
+        <nav class="navbar navbar-expand-lg bg-white fixed-top">
+          <a class="navbar-brand" href="index.html">Webtárhely Menedzsment</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto navbar-right-top">
+              <li class="nav-item">
+                <div id="custom-search" class="top-search-bar">
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Keresés..."
+                  />
+                </div>
+              </li>
+              <li class="nav-item dropdown notification">
+                <a
+                  class="nav-link nav-icons"
+                  href="#"
+                  id="navbarDropdownMenuLink1"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fas fa-fw fa-bell"></i>
+                  <span class="indicator"></span
+                ></a>
+                <ul
+                  class="dropdown-menu dropdown-menu-right notification-dropdown"
+                >
+                  <li>
+                    <div class="notification-title">Értesítések</div>
+                    <div class="notification-list">
+                      <div class="list-group">
+                        <a
+                          href="#"
+                          class="list-group-item list-group-item-action active"
+                        >
+                          <div class="notification-info">
+                            <div class="notification-list-user-img">
+                              <img
+                                src="assets/images/avatar-2.jpg"
+                                alt=""
+                                class="user-avatar-md rounded-circle"
+                              />
+                            </div>
+                            <div class="notification-list-user-block">
+                              <span class="notification-list-user-name"
+                                >Üzemeltetés</span
+                              >Tervezett karbantartás!
+                              <div class="notification-date">2 perce</div>
+                            </div>
+                          </div>
+                        </a>
+                        <a
+                          href="#"
+                          class="list-group-item list-group-item-action active"
+                        >
+                          <div class="notification-info">
+                            <div class="notification-list-user-img">
+                              <img
+                                src="assets/images/avatar-2.jpg"
+                                alt=""
+                                class="user-avatar-md rounded-circle"
+                              />
+                            </div>
+                            <div class="notification-list-user-block">
+                              <span class="notification-list-user-name"
+                                >Számlázás</span
+                              >Új számla!
+                              <div class="notification-date">2 perce</div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="list-footer">
+                      <a href="#">Minden értesítés</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown nav-user">
+                <a
+                  class="nav-link nav-user-img"
+                  href="#"
+                  id="navbarDropdownMenuLink2"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><img
+                    src="assets/images/avatar-1.jpg"
+                    alt=""
+                    class="user-avatar-md rounded-circle"
+                /></a>
+                <div
+                  class="dropdown-menu dropdown-menu-right nav-user-dropdown"
+                  aria-labelledby="navbarDropdownMenuLink2"
+                >
+                  <div class="nav-user-info">
+                    <h5 class="mb-0 text-white nav-user-name">
+                      Demo Felhasználó
+                    </h5>
+                  </div>
+                  <a class="dropdown-item" href="#"
+                    ><i class="fas fa-user mr-2"></i>Fiók beállítások</a
+                  >
+                  <a class="dropdown-item" href="#"
+                    ><i class="fas fa-cog mr-2"></i>Beállítások</a
+                  >
+                  <a class="dropdown-item" href="#"
+                    ><i class="fas fa-power-off mr-2"></i>Kijelentkezés</a
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <!-- ============================================================== -->
+      <!-- end navbar -->
+      <!-- ============================================================== -->
+      <!-- ============================================================== -->
+      <!-- left sidebar -->
+      <!-- ============================================================== -->
+      <div class="nav-left-sidebar sidebar-dark">
+        <div class="menu-list">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="d-xl-none d-lg-none" href="#">Vezérlőpult</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav flex-column">
+                <li class="nav-divider">Menü</li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="index.html"
+                    ><i class="fa fa-fw fa-user-circle"></i>Vezérlőpult
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="domains.html"
+                    ><i class="fa fa-fw fa-at"></i>Domain
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="storage.html"
+                    ><i class="fa fa-fw fa-hdd"></i>Tárhely
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"
+                    ><i class="fa fa-fw fa-database"></i>Adatbázis
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="billing.html"
+                    ><i class="fa fa-fw fa-file"></i>Számlák
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"
+                    ><i class="fa fa-fw fa-cog"></i>Beállítások
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <!-- ============================================================== -->
+      <!-- end left sidebar -->
+      <!-- ============================================================== -->
+      <!-- ============================================================== -->
+      <!-- wrapper  -->
+      <!-- ============================================================== -->
+      <div class="dashboard-wrapper">
+        <div class="dashboard-ecommerce">
+          <div class="container-fluid dashboard-content">
+            <!-- ============================================================== -->
+            <!-- pageheader  -->
+            <!-- ============================================================== -->
+            <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                  <h2 class="pageheader-title">Vezérlőpult - Áttekintés</h2>
+                </div>
+              </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end pageheader  -->
+            <!-- ============================================================== -->
+            <div class="ecommerce-widget">
+              <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                  <div class="card border-3 border-top border-top-primary">
+                    <div class="card-body">
+                      <h5 class="text-muted">Domain címek</h5>
+                      <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">321 db</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                  <div class="card border-3 border-top border-top-success">
+                    <div class="card-body">
+                      <h5 class="text-muted">Tárhelyek</h5>
+                      <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">210 db</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                  <div class="card border-3 border-top border-top-warning">
+                    <div class="card-body">
+                      <h5 class="text-muted">Felhasznált tárhely</h5>
+                      <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">874 GB</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                  <div class="card border-3 border-top border-top-danger">
+                    <div class="card-body">
+                      <h5 class="text-muted">Várható karbantartás</h5>
+                      <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">1 db</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="text-muted">Összes oldalmegtekintés</h5>
+                      <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">128K</h1>
+                      </div>
+                      <div
+                        class="metric-label d-inline-block float-right text-success font-weight-bold"
+                      >
+                        <span><i class="fa fa-fw fa-arrow-up"></i></span
+                        ><span>12.77%</span>
+                      </div>
+                    </div>
+                    <div id="sparkline-revenue"></div>
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="text-muted">Egyedi látogató</h5>
+                      <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">78K</h1>
+                      </div>
+                      <div
+                        class="metric-label d-inline-block float-right text-secondary font-weight-bold"
+                      >
+                        <span><i class="fa fa-fw fa-arrow-down"></i></span
+                        ><span>-8%</span>
+                      </div>
+                    </div>
+                    <div id="sparkline-revenue2"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <!-- ============================================================== -->
+
+                <!-- ============================================================== -->
+
+                <!-- recent orders  -->
+                <!-- ============================================================== -->
+                <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
+                  <div class="card">
+                    <h5 class="card-header">Top Domainek</h5>
+                    <div class="card-body p-0">
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead class="bg-light">
+                            <tr class="border-0">
+                              <th class="border-0">Domain</th>
+                              <th class="border-0">Látogatók</th>
+                              <th class="border-0">Oldalmegtekintés</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>teszt1.hu</td>
+                              <td>40K</td>
+                              <td>92K</td>
+                            </tr>
+                            <tr>
+                              <td>example.com</td>
+                              <td>10K</td>
+                              <td>14K</td>
+                            </tr>
+                            <tr>
+                              <td>github.com</td>
+                              <td>2K</td>
+                              <td>6K</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <div class="footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                Copyright © 2021
+                <a href="https://github.com/sze-plusplusplus" target="_blank"
+                  >Sze-PlusPlusPlus</a
+                ><br />
+                Dashboard by
+                <a href="https://colorlib.com/wp/" target="_blank">Colorlib</a>.
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+      </div>
+      <!-- ============================================================== -->
+      <!-- end wrapper  -->
+      <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper  -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <!-- jquery 3.3.1 -->
+    <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <!-- bootstap bundle js -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- main js -->
+    <script src="assets/libs/js/main-js.js"></script>
+    <!-- sparkline js -->
+    <script src="assets/vendor/charts/sparkline/jquery.sparkline.js"></script>
+    <script src="assets/libs/js/dashboard-ecommerce.js"></script>
+  </body>
+</html>
