@@ -13,6 +13,7 @@ jobs:
           yarn
           yarn generate
           shopt -s extglob && eval "mkdir -p dist && cp -R docs/!(*.md) dist/"
+          cp -r gui dist/
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.0.0
