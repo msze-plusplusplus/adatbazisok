@@ -27,14 +27,15 @@ VALUES (1, 1, 100, 10, 10, 10, 1, 100, 'MyIzé'),
        (1, 2, 10, 100, 120, 20, 2, 100, 'BestAppEver'),
        (2, 3, 270, 120, 100, 75, 3, 1000, 'Test'),
        (2, 4, 800, 140, 1000, 980, 4, 2000, 'Google'),
-       (1, 5, 20, 200, 70, 100, 5, 3000, 'NemTest');
+       (1, 5, 20, 200, 70, 100, 6, 3000, 'NemTest');
 
 INSERT INTO Domain (UserId, DomainAddress, StorageId, TLD, NameServer1, NameServer2)
 VALUES (1, 'nemtest', 1, 'hu', 'ns1.example.com', 'ns2.example.com'),
        (1, 'test', 2, 'com', 'ns3.example.com', 'ns4.example.com'),
        (2, 'facebook', 3, 'com', 'ns1.example.com', 'ns3.example.com'),
        (2, 'google', 3, 'at', 'ns2.example.com', 'ns4.example.com'),
-       (1, 'iwiw', 4, 'hu', 'ns.common.com', 'ns.ns.com');
+       (1, 'iwiw', 4, 'hu', 'ns.common.com', 'ns.ns.com'),
+       (2, 'kfc', 5, 'eu', 'ns.kfc.com', 'ns2.kfc.com');
 
 INSERT INTO Bill (UserId, StorageId, DomainId, Date, Deadline, Cost, BillId)
 VALUES (1, NULL, NULL, '2018-07-12 12:00:00', '2018-08-12 12:00:00', 1000, 'BBKT-2018-00000001'),
@@ -57,3 +58,32 @@ VALUES (1, '2018-07-22', '0000000000000001', 1),
        (2, '2018-07-23', '0000000000000003', 4),
        (1, '2018-07-29', '0000000000000004', 6),
        (1, '2021-04-21', '0000000000000005', 11);
+
+
+INSERT INTO Notification (UserId, StorageId, DomainId, TimeFrameStart, TimeFrameEnd, Title, Message, IsActive)
+VALUES (1, NULL, NULL, DATE_SUB(NOW(), INTERVAL 1 MONTH), DATE_ADD(NOW(), INTERVAL 1 MONTH), 'maintenance', '...', TRUE),
+       (NULL, 1, NULL, DATE_SUB(NOW(), INTERVAL 1 MONTH), DATE_ADD(NOW(), INTERVAL 1 MONTH), 'maintenance', '...', TRUE),
+       (NULL, NULL, 1, DATE_SUB(NOW(), INTERVAL 1 MONTH), DATE_ADD(NOW(), INTERVAL 1 MONTH), 'maintenance', '...', TRUE),
+       (2, NULL, NULL, DATE_SUB(NOW(), INTERVAL 1 MONTH), DATE_ADD(NOW(), INTERVAL 1 MONTH), 'maintenance', '...', TRUE),
+       (NULL, 5, NULL, DATE_SUB(NOW(), INTERVAL 1 MONTH), DATE_ADD(NOW(), INTERVAL 1 MONTH), 'maintenance', '...', TRUE),
+       (NULL, NULL, 6, DATE_SUB(NOW(), INTERVAL 1 MONTH), DATE_ADD(NOW(), INTERVAL 1 MONTH), 'maintenance', '...', TRUE),
+       (1, NULL, NULL, DATE_SUB(NOW(), INTERVAL 1 MONTH), DATE_ADD(NOW(), INTERVAL 1 MONTH), 'pay please', '...', TRUE),
+       (NULL, NULL, 6, DATE_SUB(NOW(), INTERVAL 1 MONTH), DATE_ADD(NOW(), INTERVAL 1 MONTH), 'maintenance', '...', TRUE);
+
+INSERT INTO Statistic (DomainId, Month, Views, UniqueViewers)
+VALUES (1, '2021-04-01', 100, 10),
+       (1, '2021-03-01', 34, 10),
+       (1, '2021-02-01', 250, 200),
+       (1, '2021-01-01', 10, 1),
+       (2, '2021-04-01', 12, 10),
+       (2, '2021-03-01', 100, 1),
+       (2, '2021-02-01', 342, 232),
+       (2, '2021-01-01', 23, 10),
+       (3, '2021-04-01', 112, 32),
+       (3, '2021-03-01', 5452, 2321),
+       (3, '2021-02-01', 2312, 210),
+       (3, '2021-01-01', 120232, 18843),
+       (4, '2021-04-01', 1323, 502),
+       (4, '2021-03-01', 123, 80),
+       (4, '2021-02-01', 422, 330),
+       (4, '2021-01-01', 80, 10);

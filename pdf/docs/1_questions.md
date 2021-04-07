@@ -90,7 +90,17 @@ WHERE p.Date BETWEEN '2019-09-12' AND '2020-02-23';
 
 ![Query 9](queries/query9.png "Query 9")
 
-10. Melyek azok az adatközpontok, ahol legalább a webtárhelyek fele rendelkezik adatbázissal, PHP-val és e-mail fiókkal is?
+10. Éves statisztika az egyes domain címekhez, amik tartalmazzák az összes látógatást és az összes egyedi látógatót.
+
+```sql
+SELECT DomainAddress(d.DomainAddress, d.TLD) as Address, YEAR(s.Month) AS Year, SUM(s.Views) AS ViewSum, SUM(s.UniqueViewers) as UViewSum FROM Domain d
+INNER JOIN Statistic s ON s.DomainId = d.Id
+GROUP BY DomainAddress, Year;
+```
+
+![Query 10](queries/query10.png "Query 10")
+
+11. Melyek azok az adatközpontok, ahol legalább a webtárhelyek fele rendelkezik adatbázissal, PHP-val és e-mail fiókkal is?
 
 ```sql
 SELECT CenterName(dc.City, dc.Number) AS Center FROM DataCenter dc
@@ -101,19 +111,22 @@ GROUP BY dc.Id
 HAVING COUNT(s.Id) >= GetStorageNumber(dc.Id) / 2;
 ```
 
-![Query 10](queries/query10.png "Query 10")
+![Query 11](queries/query11.png "Query 11")
 
-11. Mely PHP futtatással rendelkező domainen lesz karbantartás a következő hónapban (30 nap), a _BUD1_ adatközpontban?
+12. Mely PHP futtatással rendelkező domainen lesz karbantartás a következő hónapban (30 nap), a _BUD1_ adatközpontban?
 
 ```sql
 SELECT DomainAddress(d.DomainAddress, d.TLD) AS Address FROM Domain d
 INNER JOIN Storage s on d.StorageId = s.Id
 INNER JOIN StorageType st on s.TypeId = st.Id
 INNER JOIN DataCenter dc on s.DataCenterId = dc.Id
-WHERE dc.Name = 'BUD1' AND st.PHPEnabled; /* Karban tartás? */
+INNER JOIN Notification n on d.Id = n.DomainId
+WHERE dc.Name = 'BUD1' AND st.PHPEnabled AND n.Title = 'maintenance' AND n.TimeFrameEnd <= DATE_ADD(NOW(), INTERVAL 30 DAY);
 ```
 
-12. Mely _.hu_ domain nevek voltak az utóbbi _2 hónapban_ befizetve?
+![Query 12](queries/query12.png "Query 12")
+
+13. Mely _.hu_ domain nevek voltak az utóbbi _2 hónapban_ befizetve?
 
 ```sql
 SELECT DomainAddress(d.DomainAddress, d.TLD) as Domain FROM Domain d
@@ -122,13 +135,17 @@ INNER JOIN Payment p on b.Id = p.BillId
 WHERE d.TLD = 'hu' AND p.Date >= DATE_SUB(NOW(), INTERVAL 2 MONTH);
 ```
 
-13. Az egyes felhasználók mennyi aktív értesítéssel rendelkeznek?
+![Query 13](queries/query13.png "Query 13")
+
+14. Az egyes felhasználók mennyi aktív értesítéssel rendelkeznek?
 
 ```sql
 SELECT u.UserName, GetActiveUserNotifications(u.Id) Notifications FROM User u;
 ```
 
-14. Melyek azok a domain nevek, amelyek _Maxi_ csomaggal rendelkeznek?
+![Query 14](queries/query14.png "Query 14")
+
+15. Melyek azok a domain nevek, amelyek _Maxi_ csomaggal rendelkeznek?
 
 ```sql
 SELECT DomainAddress(d.DomainAddress, d.TLD) as Address FROM Domain d
@@ -137,7 +154,9 @@ INNER JOIN StorageType st on s.TypeId = st.Id
 WHERE st.Name = 'Maxi';
 ```
 
-15. Melyik a legterheltebb adatközpontok? (Foglalt GB / Látogatottság)
+![Query 15](queries/query15.png "Query 15")
+
+16. Melyik a legterheltebb adatközpontok? (Foglalt GB / Látogatottság)
 
 ```sql
 SELECT CenterName(dt.City, dt.Number) AS Center FROM DataCenter dt
@@ -145,10 +164,12 @@ INNER JOIN Storage s on dt.Id = s.DataCenterId
 INNER JOIN Domain d on s.Id = d.StorageId
 INNER JOIN Statistic stat on d.Id = stat.DomainId
 GROUP BY dt.Id
-ORDER BY SUM(s.DatabaseSize / stat.Views); /* Need fix */
+ORDER BY SUM(s.DatabaseSize / stat.Views);
 ```
 
-16. Kik azok a felhasználók, akik a határidő előtti napon fizették be a számlát? (és melyek ezek a számlák?)
+![Query 16](queries/query16.png "Query 16")
+
+17. Kik azok a felhasználók, akik a határidő előtti napon fizették be a számlát? (és melyek ezek a számlák?)
 
 ```sql
 SELECT b.BillId, u.FullName FROM User u
@@ -157,7 +178,7 @@ INNER JOIN Payment p on b.Id = p.BillId
 WHERE p.Date < b.Deadline AND p.Date > SUBDATE(b.Deadline, INTERVAL 1 DAY);
 ```
 
-17. A top 5 PHP futtatás nélküli weboldalak és tulajdonosaik, amelyek látogatottsága a legmagasabb?
+18. A top 5 PHP futtatás nélküli weboldalak és tulajdonosaik, amelyek látogatottsága a legmagasabb?
 
 ```sql
 SELECT DomainAddress(d.DomainAddress, d.TLD) AS DomainAdd, u.FullName FROM Domain d
@@ -170,5 +191,7 @@ GROUP BY DomainAdd
 ORDER BY SUM(stat.Views) DESC
 LIMIT 5;
 ```
+
+![Query 18](queries/query18.png "Query 18")
 
 <div class="page-break"></div>

@@ -20,9 +20,9 @@ GROUP BY d.TLD
 HAVING d.TLD LIKE 'com';
 
 /* Évi statisztika az egyes domainekhez */
-SELECT d.DomainAddress, d.TLD, YEAR(s.Month) AS Year, SUM(s.Views) AS ViewSum, SUM(s.UniqueViewers) as UViewSum FROM Domain d
+SELECT DomainAddress(d.DomainAddress, d.TLD) as Address, YEAR(s.Month) AS Year, SUM(s.Views) AS ViewSum, SUM(s.UniqueViewers) as UViewSum FROM Domain d
 INNER JOIN Statistic s ON s.DomainId = d.Id
-GROUP BY Year;
+GROUP BY DomainAddress, Year;
 
 /* Az összes webtárhely neve és létrehozási dátuma, ahol SSH engedélyezve van és a maximum sávszélesség nagyobb mint vagy egyenlő 1 */
 SELECT s.Name, s.Creation FROM Storage s
@@ -58,13 +58,6 @@ WHERE st.PHPEnabled && st.MaximumEmailAccounts > 0
 GROUP BY dc.Id
 HAVING COUNT(s.Id) >= GetStorageNumber(dc.Id) / 2;
 
-/* Mely PHP futtatással rendelkező domainen lesz karbantartás a következő hónapban (30 nap), a _BUD1_ adatközpontban? */
-SELECT * FROM Domain d
-INNER JOIN Storage s on d.StorageId = s.Id
-INNER JOIN StorageType st on s.TypeId = st.Id
-INNER JOIN DataCenter dc on s.DataCenterId = dc.Id
-WHERE dc.Name = 'BUD1' AND st.PHPEnabled; /* IDK */
-
 /* Mely _.hu_ domain nevek voltak az utóbbi _2 hónapban_ befizetve? */
 SELECT DomainAddress(d.DomainAddress, d.TLD) as Domain FROM Domain d
 INNER JOIN Bill b on d.Id = b.DomainId
@@ -86,7 +79,7 @@ INNER JOIN Storage s on dt.Id = s.DataCenterId
 INNER JOIN Domain d on s.Id = d.StorageId
 INNER JOIN Statistic stat on d.Id = stat.DomainId
 GROUP BY dt.Id
-ORDER BY SUM(s.DatabaseSize / stat.Views); /* Need fix */
+ORDER BY SUM(s.DatabaseSize / stat.Views);
 
 /* Kik azok a felhasználók, akik a határidő előtti napon fizették be a számlát? (és melyek ezek a számlák?) */
 SELECT b.BillId, u.FullName FROM User u
@@ -110,4 +103,5 @@ SELECT DomainAddress(d.DomainAddress, d.TLD) AS Address FROM Domain d
 INNER JOIN Storage s on d.StorageId = s.Id
 INNER JOIN StorageType st on s.TypeId = st.Id
 INNER JOIN DataCenter dc on s.DataCenterId = dc.Id
-WHERE dc.Name = 'BUD1' AND st.PHPEnabled; /* Karbantartás? */
+INNER JOIN Notification n on d.Id = n.DomainId
+WHERE dc.Name = 'BUD1' AND st.PHPEnabled AND n.Title = 'maintenance' AND n.TimeFrameEnd <= DATE_ADD(NOW(), INTERVAL 30 DAY);

@@ -30,8 +30,8 @@
 - [x] Egyedi kulcsok
 - [x] Tárolt függvények
 - [x] Triggerek
-- [ ] Alap adatok (részlegesen megvan)
-- [ ] Lekérdezések (részlegesen megvan)
+- [x] Alap adatok
+- [x] Lekérdezések
 - [ ] Adathozzáadó eljárások
 - [ ] Egyed-Kapcsolat diagram
 - [ ] GUI tervek
