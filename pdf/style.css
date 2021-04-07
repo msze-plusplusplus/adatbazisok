@@ -50,3 +50,19 @@ blockquote {
   color: #535a60;
   border-left: 4px solid #dadada;
 }
+
+.cover {
+  margin-top: 3cm;
+}
+
+.cover img {
+  max-height: 3cm;
+}
+
+.cover-bottom {
+  margin-top: 10cm;
+}
+
+.cover-bottom h3 {
+  font-weight: lighter;
+}

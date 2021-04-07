@@ -69,17 +69,9 @@ section.footer span.sign {
 </section>`,
     footerTemplate: `
 <section class="footer">
-    <span>${currentDate}</span>
     <div class="page-number">
         <span class="pageNumber"></span> / <span class="totalPages"></span>
     </div>
-    <span class="sign">${
-      process.env.GITHUB_REPOSITORY || "Helyben generált"
-    } - Feltöltő: ${
-      process.env.GITHUB_ACTOR || require("os").userInfo().username || ""
-    } ${
-      process.env.GITHUB_SHA ? "- Commit: " + process.env.GITHUB_SHA : ""
-    }</span>
 </section>`,
   },
 };

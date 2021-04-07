@@ -35,5 +35,5 @@
 - [x] Adathozzáadó eljárások (Tomi szerint)
 - [ ] További triggerek?
 - [x] Egyed-Kapcsolat diagram
-- [ ] GUI tervek
+- [x] GUI tervek
 - [ ] Prezentáció
