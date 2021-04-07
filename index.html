@@ -50,6 +50,22 @@ blockquote {
   color: #535a60;
   border-left: 4px solid #dadada;
 }
+
+.cover {
+  margin-top: 3cm;
+}
+
+.cover img {
+  max-height: 3cm;
+}
+
+.cover-bottom {
+  margin-top: 10cm;
+}
+
+.cover-bottom h3 {
+  font-weight: lighter;
+}
 /*# sourceURL=style.css*/</style><style type="text/css">/*
 
 github.com style (c) Vasily Polovnyov <vast@whiteants.net>
@@ -151,21 +167,25 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 }
 /*# sourceURL=/home/runner/work/adatbazisok/adatbazisok/pdf/node_modules/highlight.js/styles/github.css*/</style></head>
 <body class="">
-<center>
-    <h1>
-        Adatbázisok (<span style="font-weight:bold;">GKNB_INTM010</span>)
-    </h1>
-    <br><br><br><br><br><br><br><br><br><br>
-    <h2>
-        Webtárhely kezelésre szolgáló adatbázis - beadandó
-    </h2>
-    <br><br><br><br><br><br><br><br><br><br>
-</center>
+<center class="cover">
 
-<center>
-    <h4>
-        Készítette: Baranyai Bence Bendegúz (<span style="font-weight:bold;">XE5TNO</span>), Karcag Tamás (<span style="font-weight:bold;">DT0QPB</span>)
-    </h4>
+<p><img src="sze/sze.png" alt="SZE" title="SZE"></p>
+<p><img src="sze/it.png" alt="SZE IT" title="SZE IT"></p>
+<h1>
+    Adatbázisok (<span style="font-weight:bold;">GKNB_INTM010</span>)
+</h1>
+<h2>
+    Webtárhely kezelésre szolgáló adatbázis - beadandó
+</h2>
+
+</center>
+<center class="cover-bottom">
+
+<h3>
+    Baranyai Bence Bendegúz<br>
+    Karcag Tamás
+</h3>
+
 </center>
 
 <div class="page-break"></div>
@@ -1238,15 +1258,48 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </ul>
 <div class="page-break"></div>
 
+<h2 id="gui-tervek">GUI tervek</h2>
+<p>Tervek csak az adminisztatív, bejelentkezés után elérhető felülethez készültek. Tényleges oldal esetén, belépés nélkül, egy köszöntő, áttekintő, gyorsmegrendeléses oldalak is az oldal részét képeznék.</p>
+<p>Statikus előnézet: <a href="https://sze-plusplusplus.github.io/adatbazisok/gui/">https://sze-plusplusplus.github.io/adatbazisok/gui/</a></p>
+<h3 id="adminisztatív-kezdőlap">Adminisztatív kezdőlap</h3>
+<p><img src="gui-image/1.png" alt="Adminisztatív kezdőlap" title="Adminisztatív kezdőlap"></p>
+<p>Az <em>adminisztratív kezdőlap</em> lehetőséget biztosít a tárhelyek, domainek áttekintésére, bővíthető további widgetekkel, jelenleg csak néhány példa van megjelenítve. További forgalmi statisztikák szerepeltethetők. A lejáró számlákhoz, domainekhez, tárhelyekhez figyelmeztetések megjeleníthetők. Az oldal célja a gyors áttekintés.</p>
+<p>Jobb felül látható az értesítési rész. Célja, hogy gyors rálátást biztosítson a közelgő / új eseményekre. Itt jelennek meg például a karbantartási információk, melyek esetleges üzemi kieséssel járhatnak.</p>
+<div class="page-break"></div>
+
+<h3 id="domain-kezelés">Domain kezelés</h3>
+<p><img src="gui-image/2.png" alt="Domain kezelés" title="Domain kezelés"></p>
+<p>A <em>Domain kezelés</em> oldalon van lehetőség az aktuálisan saját tulajdonban lévő domain címeket listázni. Innen lenne lehetőség a konkrét cím kezelésére tovább lépni, valamint innen lehet új regisztrációt indítani.</p>
+<div class="page-break"></div>
+
+<h3 id="tárhely-kezelés">Tárhely kezelés</h3>
+<p><img src="gui-image/3.png" alt="Tárhely kezelés" title="Tárhely kezelés"></p>
+<p>A <em>Tárhely kezelés</em> oldal a <em>Domain kezelés</em>-hez hasonlóan a Tárhelyek listázását/kezelését teszi lehetővé. Az oldal táblázata későbbiekben módosítható, például új, főbb oszlopok adhatók hozzá.</p>
+<div class="page-break"></div>
+
+<h3 id="számlákbefizetések-kezelése">Számlák/Befizetések kezelése</h3>
+<p><img src="gui-image/4.png" alt="Számlák/Befizetések kezelése" title="Számlák/Befizetések kezelése"></p>
+<p>A <em>Számlák</em> oldal megjeleníti az aktuális felhasználó számára kiállított számlákat és azok állapotát. Lehetőséget lehet adni online befizetésre (például bankkártyás fizetés), akár többféle módon is, valamint a számlák letöltésére.</p>
+<blockquote>
+<p>Téma forrása: <a href="https://github.com/puikinsh/concept">https://github.com/puikinsh/concept</a></p>
+</blockquote>
+<div class="page-break"></div>
+
 <h2 id="kód-elérése">Kód elérése</h2>
 <ul>
 <li>Amennyiben ez a fájl zip fájlba volt csomagolva, úgy az SQL fájlok is mellékelve vannak.</li>
-<li>Egyéb esetben minden fájl a Github repositoryban elérhető: <a href="https://github.com/sze-plusplusplus/adatbazisok">https://github.com/sze-plusplusplus/adatbazisok</a></li>
+<li>Egyéb esetben minden fájl a Github repositoryban elérhető: <a href="https://github.com/sze-plusplusplus/adatbazisok">https://github.com/sze-plusplusplus/adatbazisok</a><ul>
+<li>A beadási verziók <em>tag</em>-elve vannak<ul>
+<li>Félévközi leadás: <a href="https://github.com/sze-plusplusplus/adatbazisok/releases/tag/felevkozi-v1">https://github.com/sze-plusplusplus/adatbazisok/releases/tag/felevkozi-v1</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Aktuális PDF fájl (automatikusan generált): <a href="https://sze-plusplusplus.github.io/adatbazisok/webtarhely_adatbazis_plusplusplus.pdf">https://sze-plusplusplus.github.io/adatbazisok/webtarhely_adatbazis_plusplusplus.pdf</a></li>
 </ul>
 <hr>
 <small>
-Frissítve: 2021. 04. 07. 19:01:52 Feltöltő: karcagtamas - Commit: 406e5e94da26f8dbe41edd5ba2f1a5d65867c0a9
+Frissítve: 2021. 04. 07. 21:52:56 Feltöltő: bencebaranyai - Commit: 9a90055102a9f0314e3e48f9b66fd88a18c19762
 </small>
 
 
