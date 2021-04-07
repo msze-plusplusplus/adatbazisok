@@ -1189,12 +1189,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li><code>GetActiveUserNotifications</code> - Lekéri a felhasználóhoz tartozó összes aktív értesítésnek a darabszámát</li>
 <li><code>GetActiveDomainNotificationsByUser</code> - Lekéri a felhasználóhoz tartozó domain címekhez tartozó összes aktív értesítéseknek a darabszámát</li>
 <li><code>GetActiveStorageNotificationsByUser</code> - Lekéri a felhasználóhoz tartozó web tárhyelhez tartozó összes aktív értesítéseknek a darabszámát</li>
+<li><code>GetNextBillId</code> - A jelenlrg tárolt adatok alapján meghatározza a jelenlegi év következő számla azonosítóját</li>
 </ul>
 <h3 id="triggerek">Triggerek</h3>
 <ul>
 <li><code>CheckLimitsStorage</code> - Új tárhely létrehozás limitek ellenőrzése<ul>
 <li><code>Storage</code> tábla - Beszúrás előtt</li>
 <li><code>AreLimitsReached</code></li>
+<li>Meghatározza a tárhelyhez tartozó költséget</li>
 </ul>
 </li>
 <li><code>CheckLimitsDomain</code> - Új domain regisztráció limitek ellenőrzése<ul>
@@ -1207,6 +1209,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>A <em>UserName</em>, <em>Email</em>, <em>Registration</em> mezők nem szerkeszthetők</li>
 </ul>
 </li>
+<li><code>AddBillId</code> - A számla létrehozásakor felülirja a számla azonosítót a következő helyes azonosítóval a tárolt adatok alapján</li>
+<li><code>EditBillId</code> - Blokkolja a számla azonosító átírását módosítás közben</li>
+<li><code>EditStorage</code> - Meghatározza a tárhelyhez tartozó költséget módosítás után</li>
 </ul>
 <div class="page-break"></div>
 
@@ -1218,7 +1223,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </ul>
 <hr>
 <small>
-Frissítve: 2021. 04. 07. 17:10:53 Feltöltő: karcagtamas - Commit: 9ef72ee03dfbfb1a827e85ed9505d2087cb9f27c
+Frissítve: 2021. 04. 07. 18:47:07 Feltöltő: karcagtamas - Commit: 09477ba8ac2bb2e9da18b7873245e6751c9c0413
 </small>
 
 
