@@ -166,49 +166,64 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <ol>
 <li>Hány <em>.com</em> TLD-jű domain van beregisztrálva a rendszerbe?</li>
 </ol>
-<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(d.TLD) <span class="hljs-keyword">as</span> Addresses <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">Domain</span> d
+<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(d.TLD) <span class="hljs-keyword">as</span> AddressCount <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">Domain</span> d
 <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> d.TLD
-<span class="hljs-keyword">HAVING</span> d.TLD <span class="hljs-keyword">LIKE</span> <span class="hljs-string">'com'</span>;</code></pre><ol start="2">
+<span class="hljs-keyword">HAVING</span> d.TLD <span class="hljs-keyword">LIKE</span> <span class="hljs-string">'com'</span>;</code></pre><p><img src="./queries/query1.png" alt="Query 1" title="Query 1"></p>
+<ol start="2">
 <li>Hol találhatók Adatközpontok és mi a jeligéjük?</li>
 </ol>
 <pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> dc.City, CenterName(dc.City, dc.Number) <span class="hljs-keyword">as</span> Keyword <span class="hljs-keyword">FROM</span> DataCenter dc
-<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> Keyword;</code></pre><ol start="3">
-<li>Mi a 3 legtöbb szerverteremmel rendelkező központ neve? (Csokkenő sorrend és a darabszámok is jelenjenek meg)</li>
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> Keyword;</code></pre><p><img src="./queries/query2.png" alt="Query 2" title="Query 2"></p>
+<ol start="3">
+<li>Mi a 3 legtöbb szerverteremmel rendelkező város neve? (Csokkenő sorrend és a darabszámok is jelenjenek meg)</li>
 </ol>
-<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> CenterName(dc.City, dc.Number) <span class="hljs-keyword">as</span> Center, <span class="hljs-keyword">COUNT</span>(dc.Id) <span class="hljs-keyword">as</span> <span class="hljs-keyword">Count</span> <span class="hljs-keyword">FROM</span> DataCenter dc
+<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> dc.City, <span class="hljs-keyword">COUNT</span>(dc.Id) <span class="hljs-keyword">as</span> <span class="hljs-keyword">Count</span> <span class="hljs-keyword">FROM</span> DataCenter dc
 <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> dc.City
 <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">Count</span> <span class="hljs-keyword">DESC</span>, dc.City
-<span class="hljs-keyword">LIMIT</span> <span class="hljs-number">3</span>;</code></pre><ol start="4">
+<span class="hljs-keyword">LIMIT</span> <span class="hljs-number">3</span>;</code></pre><p><img src="./queries/query3.png" alt="Query 3" title="Query 3"></p>
+<ol start="4">
 <li>Mely csomagok tartalmaznak PHP futtatási lehetőséget?</li>
 </ol>
 <pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> st.Name <span class="hljs-keyword">FROM</span> StorageType st
-<span class="hljs-keyword">WHERE</span> st.PHPEnabled;</code></pre><ol start="5">
+<span class="hljs-keyword">WHERE</span> st.PHPEnabled;</code></pre><p><img src="./queries/query4.png" alt="Query 4" title="Query 4"></p>
+<ol start="5">
 <li>Mely webtárhelyek rendelkeznek SSH eléréssel és sávszélességük legalább 1 Gigabit/s, illetve mikor lettek ezek létrehozva?</li>
 </ol>
 <pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> s.Name, s.Creation <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">Storage</span> s
 <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> StorageType st <span class="hljs-keyword">ON</span> st.Id = s.TypeId
-<span class="hljs-keyword">WHERE</span> st.SSHEnabled <span class="hljs-keyword">AND</span> s.MaximumDataTraffic &gt;= <span class="hljs-number">1</span>;</code></pre><ol start="6">
+<span class="hljs-keyword">WHERE</span> st.SSHEnabled <span class="hljs-keyword">AND</span> s.MaximumDataTraffic &gt;= <span class="hljs-number">1</span>;</code></pre><p><img src="./queries/query5.png" alt="Query 5" title="Query 5"></p>
+<ol start="6">
 <li>Mely webtárhelyek nem rendelkezik egy Domain címmel sem?</li>
 </ol>
 <pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> s.Name <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">Storage</span> s
 <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-keyword">Domain</span> d <span class="hljs-keyword">ON</span> d.StorageId = s.Id
 <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> s.Name
-<span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">COUNT</span>(d.Id) = <span class="hljs-number">0</span></code></pre><ol start="7">
+<span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">COUNT</span>(d.Id) = <span class="hljs-number">0</span></code></pre><p><img src="./queries/query6.png" alt="Query 6" title="Query 6"></p>
+<ol start="7">
 <li>Van-e az <em>1</em>-es Id-val rendelkező felhasználónak közvetlen nem kifizetett számlája és mi annak az azonosítója?</li>
 </ol>
 <pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> b.BillId <span class="hljs-keyword">FROM</span> Bill b
 <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> Payment p <span class="hljs-keyword">ON</span> p.BillId = b.Id
-<span class="hljs-keyword">WHERE</span> b.UserId = <span class="hljs-number">1</span> &amp;&amp; p.Id <span class="hljs-keyword">IS</span> <span class="hljs-literal">NULL</span> &amp;&amp; b.Deadline &gt;= <span class="hljs-keyword">NOW</span>();</code></pre><ol start="8">
-<li>Melyek azok a webtárhelyek, amikhez a kapcsolt domain név lejárt?</li>
+<span class="hljs-keyword">WHERE</span> b.UserId = <span class="hljs-number">1</span> &amp;&amp; p.Id <span class="hljs-keyword">IS</span> <span class="hljs-literal">NULL</span> &amp;&amp; b.Deadline &gt;= <span class="hljs-keyword">NOW</span>();</code></pre><p><img src="./queries/query7.png" alt="Query 7" title="Query 7"></p>
+<ol start="8">
+<li>Melyek azok a domain címek, amikhez a kapcsolt tárhely lejárt és mikor?</li>
 </ol>
-<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> s.Name, s.Expiration <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">Storage</span> s
-<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-keyword">Domain</span> d <span class="hljs-keyword">ON</span> s.Id = d.StorageId
-<span class="hljs-keyword">WHERE</span> s.Expiration &lt;= <span class="hljs-keyword">NOW</span>();</code></pre><ol start="9">
+<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> DomainAddress(d.DomainAddress, d.TLD) <span class="hljs-keyword">as</span> Address, s.Expiration <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">Domain</span> d
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-keyword">Storage</span> s <span class="hljs-keyword">ON</span> s.Id = d.StorageId
+<span class="hljs-keyword">WHERE</span> s.Expiration &lt;= <span class="hljs-keyword">NOW</span>();</code></pre><p><img src="./queries/query8.png" alt="Query 8" title="Query 8"></p>
+<ol start="9">
 <li>Milyen kifizetések történtek <em>2019-09-12</em> - <em>2020-02-23</em> között regisztrált felhasználóknak? Melyik felhasználónak és mi volt a tranzakció azonosítója?</li>
 </ol>
 <pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> u.UserName, p.TransactionId <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">User</span> u
 <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Payment p <span class="hljs-keyword">ON</span> u.Id = p.UserId
-<span class="hljs-keyword">WHERE</span> p.Date <span class="hljs-keyword">BETWEEN</span> <span class="hljs-string">'2019-09-12'</span> <span class="hljs-keyword">AND</span> <span class="hljs-string">'2020-02-23'</span>;</code></pre><ol start="10">
+<span class="hljs-keyword">WHERE</span> p.Date <span class="hljs-keyword">BETWEEN</span> <span class="hljs-string">'2019-09-12'</span> <span class="hljs-keyword">AND</span> <span class="hljs-string">'2020-02-23'</span>;</code></pre><p><img src="./queries/query9.png" alt="Query 9" title="Query 9"></p>
+<ol start="10">
+<li>Éves statisztika az egyes domain címekhez, amik tartalmazzák az összes látógatást és az összes egyedi látógatót.</li>
+</ol>
+<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> DomainAddress(d.DomainAddress, d.TLD) <span class="hljs-keyword">as</span> Address, <span class="hljs-keyword">YEAR</span>(s.Month) <span class="hljs-keyword">AS</span> <span class="hljs-keyword">Year</span>, <span class="hljs-keyword">SUM</span>(s.Views) <span class="hljs-keyword">AS</span> ViewSum, <span class="hljs-keyword">SUM</span>(s.UniqueViewers) <span class="hljs-keyword">as</span> UViewSum <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">Domain</span> d
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Statistic s <span class="hljs-keyword">ON</span> s.DomainId = d.Id
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> DomainAddress, <span class="hljs-keyword">Year</span>;</code></pre><p><img src="./queries/query10.png" alt="Query 10" title="Query 10"></p>
+<ol start="11">
 <li>Melyek azok az adatközpontok, ahol legalább a webtárhelyek fele rendelkezik adatbázissal, PHP-val és e-mail fiókkal is?</li>
 </ol>
 <pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> CenterName(dc.City, dc.Number) <span class="hljs-keyword">AS</span> Center <span class="hljs-keyword">FROM</span> DataCenter dc
@@ -216,29 +231,35 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> StorageType st <span class="hljs-keyword">on</span> s.TypeId = st.Id
 <span class="hljs-keyword">WHERE</span> st.PHPEnabled &amp;&amp; st.MaximumEmailAccounts &gt; <span class="hljs-number">0</span>
 <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> dc.Id
-<span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">COUNT</span>(s.Id) &gt;= GetStorageNumber(dc.Id) / <span class="hljs-number">2</span>;</code></pre><ol start="11">
+<span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">COUNT</span>(s.Id) &gt;= GetStorageNumber(dc.Id) / <span class="hljs-number">2</span>;</code></pre><p><img src="./queries/query11.png" alt="Query 11" title="Query 11"></p>
+<ol start="12">
 <li>Mely PHP futtatással rendelkező domainen lesz karbantartás a következő hónapban (30 nap), a <em>BUD1</em> adatközpontban?</li>
 </ol>
 <pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> DomainAddress(d.DomainAddress, d.TLD) <span class="hljs-keyword">AS</span> Address <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">Domain</span> d
 <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-keyword">Storage</span> s <span class="hljs-keyword">on</span> d.StorageId = s.Id
 <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> StorageType st <span class="hljs-keyword">on</span> s.TypeId = st.Id
 <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> DataCenter dc <span class="hljs-keyword">on</span> s.DataCenterId = dc.Id
-<span class="hljs-keyword">WHERE</span> dc.Name = <span class="hljs-string">'BUD1'</span> <span class="hljs-keyword">AND</span> st.PHPEnabled; <span class="hljs-comment">/* Karban tartás? */</span></code></pre><ol start="12">
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Notification n <span class="hljs-keyword">on</span> d.Id = n.DomainId
+<span class="hljs-keyword">WHERE</span> dc.Name = <span class="hljs-string">'BUD1'</span> <span class="hljs-keyword">AND</span> st.PHPEnabled <span class="hljs-keyword">AND</span> n.Title = <span class="hljs-string">'maintenance'</span> <span class="hljs-keyword">AND</span> n.TimeFrameEnd &lt;= <span class="hljs-keyword">DATE_ADD</span>(<span class="hljs-keyword">NOW</span>(), <span class="hljs-built_in">INTERVAL</span> <span class="hljs-number">30</span> <span class="hljs-keyword">DAY</span>);</code></pre><p><img src="./queries/query12.png" alt="Query 12" title="Query 12"></p>
+<ol start="13">
 <li>Mely <em>.hu</em> domain nevek voltak az utóbbi <em>2 hónapban</em> befizetve?</li>
 </ol>
 <pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> DomainAddress(d.DomainAddress, d.TLD) <span class="hljs-keyword">as</span> <span class="hljs-keyword">Domain</span> <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">Domain</span> d
 <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Bill b <span class="hljs-keyword">on</span> d.Id = b.DomainId
 <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Payment p <span class="hljs-keyword">on</span> b.Id = p.BillId
-<span class="hljs-keyword">WHERE</span> d.TLD = <span class="hljs-string">'hu'</span> <span class="hljs-keyword">AND</span> p.Date &gt;= <span class="hljs-keyword">DATE_SUB</span>(<span class="hljs-keyword">NOW</span>(), <span class="hljs-built_in">INTERVAL</span> <span class="hljs-number">2</span> <span class="hljs-keyword">MONTH</span>);</code></pre><ol start="13">
+<span class="hljs-keyword">WHERE</span> d.TLD = <span class="hljs-string">'hu'</span> <span class="hljs-keyword">AND</span> p.Date &gt;= <span class="hljs-keyword">DATE_SUB</span>(<span class="hljs-keyword">NOW</span>(), <span class="hljs-built_in">INTERVAL</span> <span class="hljs-number">2</span> <span class="hljs-keyword">MONTH</span>);</code></pre><p><img src="./queries/query13.png" alt="Query 13" title="Query 13"></p>
+<ol start="14">
 <li>Az egyes felhasználók mennyi aktív értesítéssel rendelkeznek?</li>
 </ol>
-<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> u.UserName, GetActiveUserNotifications(u.Id) Notifications <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">User</span> u;</code></pre><ol start="14">
+<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> u.UserName, GetActiveUserNotifications(u.Id) Notifications <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">User</span> u;</code></pre><p><img src="./queries/query14.png" alt="Query 14" title="Query 14"></p>
+<ol start="15">
 <li>Melyek azok a domain nevek, amelyek <em>Maxi</em> csomaggal rendelkeznek?</li>
 </ol>
 <pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> DomainAddress(d.DomainAddress, d.TLD) <span class="hljs-keyword">as</span> Address <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">Domain</span> d
 <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-keyword">Storage</span> s <span class="hljs-keyword">on</span> d.StorageId = s.Id
 <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> StorageType st <span class="hljs-keyword">on</span> s.TypeId = st.Id
-<span class="hljs-keyword">WHERE</span> st.Name = <span class="hljs-string">'Maxi'</span>;</code></pre><ol start="15">
+<span class="hljs-keyword">WHERE</span> st.Name = <span class="hljs-string">'Maxi'</span>;</code></pre><p><img src="./queries/query15.png" alt="Query 15" title="Query 15"></p>
+<ol start="16">
 <li>Melyik a legterheltebb adatközpontok? (Foglalt GB / Látogatottság)</li>
 </ol>
 <pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> CenterName(dt.City, dt.Number) <span class="hljs-keyword">AS</span> Center <span class="hljs-keyword">FROM</span> DataCenter dt
@@ -246,13 +267,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> <span class="hljs-keyword">Domain</span> d <span class="hljs-keyword">on</span> s.Id = d.StorageId
 <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Statistic stat <span class="hljs-keyword">on</span> d.Id = stat.DomainId
 <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> dt.Id
-<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">SUM</span>(s.DatabaseSize / stat.Views); <span class="hljs-comment">/* Need fix */</span></code></pre><ol start="16">
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">SUM</span>(s.DatabaseSize / stat.Views);</code></pre><p><img src="./queries/query16.png" alt="Query 16" title="Query 16"></p>
+<ol start="17">
 <li>Kik azok a felhasználók, akik a határidő előtti napon fizették be a számlát? (és melyek ezek a számlák?)</li>
 </ol>
 <pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> b.BillId, u.FullName <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">User</span> u
 <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Bill b <span class="hljs-keyword">on</span> u.Id = b.UserId
 <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Payment p <span class="hljs-keyword">on</span> b.Id = p.BillId
-<span class="hljs-keyword">WHERE</span> p.Date &lt; b.Deadline <span class="hljs-keyword">AND</span> p.Date &gt; <span class="hljs-keyword">SUBDATE</span>(b.Deadline, <span class="hljs-built_in">INTERVAL</span> <span class="hljs-number">1</span> <span class="hljs-keyword">DAY</span>);</code></pre><ol start="17">
+<span class="hljs-keyword">WHERE</span> p.Date &lt; b.Deadline <span class="hljs-keyword">AND</span> p.Date &gt; <span class="hljs-keyword">SUBDATE</span>(b.Deadline, <span class="hljs-built_in">INTERVAL</span> <span class="hljs-number">1</span> <span class="hljs-keyword">DAY</span>);</code></pre><ol start="18">
 <li>A top 5 PHP futtatás nélküli weboldalak és tulajdonosaik, amelyek látogatottsága a legmagasabb?</li>
 </ol>
 <pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> DomainAddress(d.DomainAddress, d.TLD) <span class="hljs-keyword">AS</span> DomainAdd, u.FullName <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">Domain</span> d
@@ -263,7 +285,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">NOT</span> st.PHPEnabled
 <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> DomainAdd
 <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">SUM</span>(stat.Views) <span class="hljs-keyword">DESC</span>
-<span class="hljs-keyword">LIMIT</span> <span class="hljs-number">5</span>;</code></pre><div class="page-break"></div>
+<span class="hljs-keyword">LIMIT</span> <span class="hljs-number">5</span>;</code></pre><p><img src="./queries/query18.png" alt="Query 18" title="Query 18"></p>
+<div class="page-break"></div>
 
 <h2 id="adatmodell">Adatmodell</h2>
 <p><img src="WebStorage.png" alt="UML Adatbázis séma" title="UML Adatbázis séma"></p>
@@ -1195,7 +1218,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </ul>
 <hr>
 <small>
-Frissítve: 2021. 04. 02. 20:29:12 Feltöltő: karcagtamas - Commit: d9a6b00ed7f891a8d632114574e515c5a4660bfe
+Frissítve: 2021. 04. 07. 17:10:53 Feltöltő: karcagtamas - Commit: 9ef72ee03dfbfb1a827e85ed9505d2087cb9f27c
 </small>
 
 
