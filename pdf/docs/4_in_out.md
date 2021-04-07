@@ -25,7 +25,7 @@
 | MaximumDatabaseNumber   | int     |     5 |     X      |                       |
 | PHPMemoryLimit          | int     |     6 |     X      |                       |
 | MaximumPHPExecutionTime | int     |     3 |     X      |                       |
-| CPaneldIsEnabled        | boolean |       |            | `false`               |
+| CPanelIsEnabled         | boolean |       |            | `false`               |
 | BaseCost                | decimal |       |            |                       |
 | DataTrafficMultiplier   | int     |     3 |            | `1`                   |
 | Name                    | varchar |   120 |            |                       |
