@@ -14,3 +14,5 @@
         Készítette: Baranyai Bence Bendegúz (<span style="font-weight:bold;">XE5TNO</span>), Karcag Tamás (<span style="font-weight:bold;">DT0QPB</span>)
     </h4>
 </center>
+
+<div class="page-break"></div>
