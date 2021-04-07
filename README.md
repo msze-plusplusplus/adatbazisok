@@ -35,6 +35,7 @@
 - [ ] Adathozzáadó eljárások
 - [ ] Egyed-Kapcsolat diagram
 - [ ] GUI tervek
+- [ ] Prezentáció
 
 ---
 

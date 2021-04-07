@@ -4,8 +4,8 @@
 SELECT dc.City, CenterName(dc.City, dc.Number) as Keyword FROM DataCenter dc
 ORDER BY Keyword;
 
-/* A top 3 legtöbb központtal rendelkező központok nevei (Csökkenő sorrendben, darabszámmal) */
-SELECT CenterName(dc.City, dc.Number) as Center, COUNT(dc.Id) as Count FROM DataCenter dc
+/* A top 3 legtöbb központtal rendelkező városok nevei (Csökkenő sorrendben, darabszámmal) */
+SELECT dc.City, COUNT(dc.Id) as Count FROM DataCenter dc
 GROUP BY dc.City
 ORDER BY Count DESC, dc.City
 LIMIT 3;
@@ -15,7 +15,7 @@ SELECT st.Name FROM StorageType st
 WHERE st.PHPEnabled;
 
 /* A `.com` domainek száma */
-SELECT COUNT(d.TLD) as Addresses FROM Domain d
+SELECT COUNT(d.TLD) as AddressCount FROM Domain d
 GROUP BY d.TLD
 HAVING d.TLD LIKE 'com';
 
@@ -41,8 +41,8 @@ LEFT JOIN Payment p ON p.BillId = b.Id
 WHERE b.UserId = 1 && p.Id IS NULL && b.Deadline >= NOW();
 
 /* Azok a webtárhelyek, amiknek a domain címe már lejárt */
-SELECT s.Name, s.Expiration FROM Storage s
-INNER JOIN Domain d ON s.Id = d.StorageId
+SELECT DomainAddress(d.DomainAddress, d.TLD) as Address, s.Expiration FROM Domain d
+INNER JOIN Storage s ON s.Id = d.StorageId
 WHERE s.Expiration <= NOW();
 
 /* _2019-09-12_ - _2020-02-23_ között regisztrált felhasználók, által végzett kifezetési tranzakciók */
@@ -110,4 +110,4 @@ SELECT DomainAddress(d.DomainAddress, d.TLD) AS Address FROM Domain d
 INNER JOIN Storage s on d.StorageId = s.Id
 INNER JOIN StorageType st on s.TypeId = st.Id
 INNER JOIN DataCenter dc on s.DataCenterId = dc.Id
-WHERE dc.Name = 'BUD1' AND st.PHPEnabled; /* Karban tartás? */
+WHERE dc.Name = 'BUD1' AND st.PHPEnabled; /* Karbantartás? */
