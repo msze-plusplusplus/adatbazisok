@@ -12,6 +12,6 @@ A fizetési kötelezettségek és befizetési elégtételeik is el vannak tárol
 
 Folyamatos statisztikát állítunk elő és tároljuk el, hogy a felhasználók visszajelzést kaphassanak a látogatottsági számokról és az új egyedi látogatásokról, míg az "élő"/nap/heti adatokért más alrendszer felelős, a hosszútávú (havi) adatok az adatbázisban kerülnek letárolásra. Ezek az adatok, az egyes domain címekhez vannak csatolva.
 
-Továbbá az adatbázis rendelkezik értesítésekkel, amik a felhasznélók figyelmét hivatottak felhívni és tájékoztatni esetleges hibákról vagy tervezett karbantartásokról. Például forgalomugrásról, befizetési kötelezettségekről, befizetett tranzakciókról, bérleti lejáratokról és így tovább.
+Továbbá az adatbázis rendelkezik értesítésekkel, amik a felhasználók figyelmét hivatottak felhívni és tájékoztatni esetleges hibákról vagy tervezett karbantartásokról. Például forgalomugrásról, befizetési kötelezettségekről, befizetett tranzakciókról, bérleti lejáratokról és így tovább.
 
 > Az adatbázis MariaDB-hez készült, más adatbázis motorral nem volt tesztelve. (MariaDB 10.5)

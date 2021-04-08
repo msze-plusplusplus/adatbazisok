@@ -66,7 +66,7 @@ ALTER TABLE Storage
     CHECK (Expiration > Creation);
 ```
 
-- StorageTypes tábla
+- StorageType tábla
   - Adatbázisok száma, PHP memória limit, PHP max. végrehajtási idő
     - Csak engedélyezett PHP mellett kitölthető
 
