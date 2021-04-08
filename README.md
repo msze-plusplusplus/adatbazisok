@@ -36,3 +36,4 @@
 - [x] Egyed-Kapcsolat diagram
 - [x] GUI tervek
 - [ ] Prezentáció
+- [ ] TOC?
