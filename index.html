@@ -197,7 +197,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <p>A adatbázisban tárolva vannak a felhasználók és adataik, akik a webtárhely létrehozáson kívül, képesek saját domaint is csatolni fiókjukhoz és az egyes webtárhelyekhez.</p>
 <p>A fizetési kötelezettségek és befizetési elégtételeik is el vannak tárolva. Külön kerülnek ezek az adatok a két oldalhoz eltárolásra.</p>
 <p>Folyamatos statisztikát állítunk elő és tároljuk el, hogy a felhasználók visszajelzést kaphassanak a látogatottsági számokról és az új egyedi látogatásokról, míg az "élő"/nap/heti adatokért más alrendszer felelős, a hosszútávú (havi) adatok az adatbázisban kerülnek letárolásra. Ezek az adatok, az egyes domain címekhez vannak csatolva.</p>
-<p>Továbbá az adatbázis rendelkezik értesítésekkel, amik a felhasznélók figyelmét hivatottak felhívni és tájékoztatni esetleges hibákról vagy tervezett karbantartásokról. Például forgalomugrásról, befizetési kötelezettségekről, befizetett tranzakciókról, bérleti lejáratokról és így tovább.</p>
+<p>Továbbá az adatbázis rendelkezik értesítésekkel, amik a felhasználók figyelmét hivatottak felhívni és tájékoztatni esetleges hibákról vagy tervezett karbantartásokról. Például forgalomugrásról, befizetési kötelezettségekről, befizetett tranzakciókról, bérleti lejáratokról és így tovább.</p>
 <blockquote>
 <p>Az adatbázis MariaDB-hez készült, más adatbázis motorral nem volt tesztelve. (MariaDB 10.5)</p>
 </blockquote>
@@ -348,19 +348,19 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <td><strong>User</strong> (Id, FullName, UserName, Email, Password, Registration, Blocked, MaximumStorage)</td>
 </tr>
 <tr>
-<td>Tárhely típus</td>
+<td>Tárhely típusok</td>
 <td><strong>StorageType</strong> (Id, SSHEnabled, PHPEnabled, MaximumEmailAccounts, MaximumFTPAccounts, MaximumDatabaseNumber, PHPMemoryLimit, MaximumPHPExecutionTime, CPanelIsEnabled, BaseCost, DataTrafficMultiplier)</td>
 </tr>
 <tr>
-<td>Szerver központ</td>
+<td>Szerver központok</td>
 <td><strong>DataCenter</strong> (Id, Name, City, Number, Area, StorageCapacity)</td>
 </tr>
 <tr>
-<td>Tárhely</td>
+<td>Tárhelyel</td>
 <td><strong>Storage</strong> (Id, UserId, Creation, Expiration, TypeId, Size, MaximumDataTraffic, EmailStorageSize, DatabaseSize, DataCenterId, Cost, Name)</td>
 </tr>
 <tr>
-<td>Domain név</td>
+<td>Domain nevek</td>
 <td><strong>Domain</strong> (Id, UserId, DomainAddress, StorageId, TLD, Registration, Expiration, NameServer1, NameServer2, NameServer3, NameServer4)</td>
 </tr>
 <tr>
@@ -1206,7 +1206,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">Storage</span>
     <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> chk_storage_expiration
     <span class="hljs-keyword">CHECK</span> (Expiration &gt; <span class="hljs-keyword">Creation</span>);</code></pre><ul>
-<li>StorageTypes tábla<ul>
+<li>StorageType tábla<ul>
 <li>Adatbázisok száma, PHP memória limit, PHP max. végrehajtási idő<ul>
 <li>Csak engedélyezett PHP mellett kitölthető</li>
 </ul>
@@ -1359,7 +1359,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </ul>
 <hr>
 <small>
-Frissítve: 2021. 04. 08. 16:23:46 Feltöltő: karcagtamas - Commit: 793c97686ca549a96e63282afb7c52cf22162647
+Frissítve: 2021. 04. 08. 19:14:37 Feltöltő: karcagtamas - Commit: daf3adc78ddec82afb66699c1370b6b0926c4779
 </small>
 
 
