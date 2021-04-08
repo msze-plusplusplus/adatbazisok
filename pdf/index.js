@@ -7,6 +7,7 @@ let content = require("child_process").execSync(
 const html = {
   as_html: true,
   dest: "docs/index.html",
+  stylesheet: "style.html.css",
 };
 
 const currentDate = new Date().toLocaleString("HU", {
