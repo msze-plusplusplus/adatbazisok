@@ -1235,7 +1235,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </ul>
 <pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">User</span>
     <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> chk_user_email
-    <span class="hljs-keyword">CHECK</span> (Email REGEXP <span class="hljs-string">'[A-Za-z0-9\+\-\=\_]{1,64}@[A-Za-z0-9\-\.]{1,253}\.[A-Za-z]{2,}'</span>);</code></pre><ul>
+    <span class="hljs-keyword">CHECK</span> (Email REGEXP
+    <span class="hljs-string">'[A-Za-z0-9\+\-\=\_]{1,64}@[A-Za-z0-9\-\.]{1,253}\.[A-Za-z]{2,}'</span>);</code></pre><ul>
 <li>Domain tábla<ul>
 <li>Domain név<ul>
 <li>A-Za-z0-9 - . (1-253 karakter)</li>
@@ -1275,7 +1276,15 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </ul>
 <pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> StorageType
     <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> chk_storage_type_php
-    <span class="hljs-keyword">CHECK</span> ((PHPEnabled=<span class="hljs-number">0</span> <span class="hljs-keyword">AND</span> PHPMemoryLimit <span class="hljs-keyword">IS</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">AND</span> MaximumPHPExecutionTime <span class="hljs-keyword">IS</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">AND</span> MaximumDatabaseNumber <span class="hljs-keyword">IS</span> <span class="hljs-literal">NULL</span>) <span class="hljs-keyword">OR</span> PHPEnabled=<span class="hljs-number">1</span>);</code></pre><ul>
+    <span class="hljs-keyword">CHECK</span> (
+      (
+        PHPEnabled=<span class="hljs-number">0</span>
+        <span class="hljs-keyword">AND</span> PHPMemoryLimit <span class="hljs-keyword">IS</span> <span class="hljs-literal">NULL</span>
+        <span class="hljs-keyword">AND</span> MaximumPHPExecutionTime <span class="hljs-keyword">IS</span> <span class="hljs-literal">NULL</span>
+        <span class="hljs-keyword">AND</span> MaximumDatabaseNumber <span class="hljs-keyword">IS</span> <span class="hljs-literal">NULL</span>
+      ) <span class="hljs-keyword">OR</span>
+      PHPEnabled=<span class="hljs-number">1</span>
+    );</code></pre><ul>
 <li>Bill tábla<ul>
 <li>Számla azonosító<ul>
 <li>Regex: <code>BBKT-[0-9]{4}-[0-9]{8}</code></li>
@@ -1292,9 +1301,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> chk_bill_bill_id
     <span class="hljs-keyword">CHECK</span> (BillId REGEXP <span class="hljs-string">'BBKT-[0-9]{4}-[0-9]{8}'</span>),
     <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> chk_bill_user_storage_domain_id
-    <span class="hljs-keyword">CHECK</span> (UserId <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">OR</span> StorageId <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">OR</span> DomainId <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>);</code></pre><div class="page-break"></div>
-
-<ul>
+    <span class="hljs-keyword">CHECK</span> ( UserId <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">OR</span>
+            StorageId <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">OR</span>
+            DomainId <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>
+          );</code></pre><ul>
 <li>Payment tábla<ul>
 <li>Tranzakció azonosító<ul>
 <li>Regex: <code>[0-9]+</code></li>
@@ -1421,7 +1431,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </ul>
 <hr>
 <small>
-Frissítve: 2021. 04. 08. 23:47:38 Feltöltő: bencebaranyai - Commit: 1fa12e4a33684220d416db5cab1b8ced8f5d18e4
+Frissítve: 2021. 04. 08. 23:53:28 Feltöltő: bencebaranyai - Commit: 8c6ef1415de41c96f1b6602694b50cafc04c5697
 </small>
 
 
