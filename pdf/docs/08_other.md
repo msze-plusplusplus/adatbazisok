@@ -12,7 +12,7 @@
 - `GetActiveStorageNotificationsByUser` - Lekéri a felhasználóhoz tartozó web tárhyelhez tartozó összes aktív értesítéseknek a darabszámát
 - `GetNextBillId` - A jelenlrg tárolt adatok alapján meghatározza a jelenlegi év következő számla azonosítóját
 
-> A tárolt eljárások és függvények kódjai megtalálhatóak a dokumentumhoz csatolt `sql` fájlokban
+> A tárolt eljárások és függvények kódjai megtalálhatóak a dokumentumhoz csatolt `database.sql` fájlban
 
 ### Triggerek
 
@@ -33,6 +33,6 @@
 - `EditStorage` - Meghatározza a tárhelyhez tartozó költséget módosítás után
   - `Storage` tábla - Frissítés előtt
 
-> A triggerek kódjai megtalálhatóak a dokumentumhoz csatolt `sql` fájlokban
+> A triggerek kódjai megtalálhatóak a dokumentumhoz csatolt `database.sql` fájlban
 
 <div class="page-break"></div>

@@ -12,6 +12,6 @@
 | Statisztika       | **Statistic** (Id, DomainId, Month, Views, UniqueViewers)                                                                                                                                                |
 | Értesítések       | **Notification** (Id, UserId, StorageId, DomainId, Creation, TimeFrameStart, TimeFrameEnd, Title, Message, IsActive)                                                                                     |
 
-> Az adatbázis kódjai megtalálhatóak a dokumentumhoz csatolt `sql` fájlokban
+> Az adatbázis kódja a `database.sql` fájlban megtalálható.
 
 <div class="page-break"></div>

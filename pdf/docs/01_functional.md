@@ -15,3 +15,5 @@ Folyamatos statisztikát állítunk elő és tároljuk el, hogy a felhasználók
 Továbbá az adatbázis rendelkezik értesítésekkel, amik a felhasználók figyelmét hivatottak felhívni és tájékoztatni esetleges hibákról vagy tervezett karbantartásokról. Például forgalomugrásról, befizetési kötelezettségekről, befizetett tranzakciókról, bérleti lejáratokról és így tovább.
 
 > Az adatbázis MariaDB-hez készült, más adatbázis motorral nem volt tesztelve. (MariaDB 10.5)
+
+<div class="page-break"></div>

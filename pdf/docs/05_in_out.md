@@ -126,4 +126,4 @@
 | Message         | longtext |       |            |                       |
 | IsActive        | boolean  |       |            | `true`                |
 
-> Az adatbázis kódjai megtalálhatóak a dokumentumhoz csatolt `sql` fájlokban
+> Az adatbázis kódja a `database.sql` fájlban megtalálható.

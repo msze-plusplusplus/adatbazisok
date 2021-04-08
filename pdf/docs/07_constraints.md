@@ -23,8 +23,6 @@
 | Payment    | Transactionid      |
 | Statistic  | DomainId, Month    |
 
-<div class="page-break"></div>
-
 ### Egyéb megszorítások
 
 - User tábla
@@ -89,6 +87,8 @@ ALTER TABLE Bill
     ADD CONSTRAINT chk_bill_user_storage_domain_id
     CHECK (UserId IS NOT NULL OR StorageId IS NOT NULL OR DomainId IS NOT NULL);
 ```
+
+<div class="page-break"></div>
 
 - Payment tábla
   - Tranzakció azonosító

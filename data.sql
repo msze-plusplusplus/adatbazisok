@@ -27,7 +27,10 @@ VALUES (1, 1, 100, 10, 10, 10, 1, 100, 'MyIzé'),
        (1, 2, 10, 100, 120, 20, 2, 100, 'BestAppEver'),
        (2, 3, 270, 120, 100, 75, 3, 1000, 'Test'),
        (2, 4, 800, 140, 1000, 980, 4, 2000, 'Google'),
-       (1, 5, 20, 200, 70, 100, 6, 3000, 'NemTest');
+       (1, 5, 20, 200, 70, 100, 6, 3000, 'NemTest'),
+       (1, 2, 5, 20, 5, 0, 1, 102, 'Alpha');
+
+UPDATE Storage SET Creation='2019-04-07 14:58:45', Expiration='2020-04-07 14:58:45' WHERE Id=4;
 
 INSERT INTO Domain (UserId, DomainAddress, StorageId, TLD, NameServer1, NameServer2)
 VALUES (1, 'nemtest', 1, 'hu', 'ns1.example.com', 'ns2.example.com'),

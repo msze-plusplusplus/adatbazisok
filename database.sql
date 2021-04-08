@@ -188,10 +188,8 @@ END ;;
 
 CREATE FUNCTION `GetStorageNumber` (`_center` int) RETURNS int
 BEGIN
-    DECLARE _num int DEFAULT 0;
-    SET _num = (SELECT COUNT(ss.Id) FROM Storage ss
-                        WHERE ss.DataCenterId = _center);
-    RETURN _num;
+    RETURN (SELECT COUNT(s.Id) FROM Storage s
+                        WHERE s.DataCenterId = _center);
 END ;;
 
 CREATE FUNCTION `DomainAddress` (`_address` varchar(253), `_tld` varchar(63)) RETURNS varchar(316)
