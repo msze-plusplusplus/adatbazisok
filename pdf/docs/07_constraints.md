@@ -36,7 +36,8 @@
 ```sql
 ALTER TABLE User
     ADD CONSTRAINT chk_user_email
-    CHECK (Email REGEXP '[A-Za-z0-9\+\-\=\_]{1,64}@[A-Za-z0-9\-\.]{1,253}\.[A-Za-z]{2,}');
+    CHECK (Email REGEXP
+    '[A-Za-z0-9\+\-\=\_]{1,64}@[A-Za-z0-9\-\.]{1,253}\.[A-Za-z]{2,}');
 ```
 
 - Domain tábla
@@ -71,7 +72,15 @@ ALTER TABLE Storage
 ```sql
 ALTER TABLE StorageType
     ADD CONSTRAINT chk_storage_type_php
-    CHECK ((PHPEnabled=0 AND PHPMemoryLimit IS NULL AND MaximumPHPExecutionTime IS NULL AND MaximumDatabaseNumber IS NULL) OR PHPEnabled=1);
+    CHECK (
+      (
+        PHPEnabled=0
+        AND PHPMemoryLimit IS NULL
+        AND MaximumPHPExecutionTime IS NULL
+        AND MaximumDatabaseNumber IS NULL
+      ) OR
+      PHPEnabled=1
+    );
 ```
 
 - Bill tábla
@@ -85,10 +94,11 @@ ALTER TABLE Bill
     ADD CONSTRAINT chk_bill_bill_id
     CHECK (BillId REGEXP 'BBKT-[0-9]{4}-[0-9]{8}'),
     ADD CONSTRAINT chk_bill_user_storage_domain_id
-    CHECK (UserId IS NOT NULL OR StorageId IS NOT NULL OR DomainId IS NOT NULL);
+    CHECK ( UserId IS NOT NULL OR
+            StorageId IS NOT NULL OR
+            DomainId IS NOT NULL
+          );
 ```
-
-<div class="page-break"></div>
 
 - Payment tábla
   - Tranzakció azonosító
