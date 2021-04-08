@@ -32,8 +32,7 @@
 - [x] Triggerek
 - [x] Alap adatok
 - [x] Lekérdezések
-- [x] Adathozzáadó eljárások (Tomi szerint)
-- [ ] További triggerek?
+- [x] Adathozzáadó eljárások
 - [x] Egyed-Kapcsolat diagram
 - [x] GUI tervek
 - [ ] Prezentáció

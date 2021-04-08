@@ -28,8 +28,8 @@ CREATE TABLE StorageType(
     MaximumEmailAccounts int(5) NULL,
     MaximumFTPAccounts int(5) NULL,
     MaximumDatabaseNumber int(5) NULL,
-    PHPMemoryLimit int(6) null,
-    MaximumPHPExecutionTime int(3) null,
+    PHPMemoryLimit int(6) NULL,
+    MaximumPHPExecutionTime int(3) NULL,
     CPanelIsEnabled boolean NOT NULL DEFAULT false,
     BaseCost decimal NOT NULL,
     DataTrafficMultiplier int(3) NOT NULL DEFAULT 1,
@@ -333,7 +333,9 @@ ALTER TABLE StorageType
 
 ALTER TABLE Bill
     ADD CONSTRAINT chk_bill_bill_id
-    CHECK (BillId REGEXP 'BBKT-[0-9]{4}-[0-9]{8}');
+    CHECK (BillId REGEXP 'BBKT-[0-9]{4}-[0-9]{8}'),
+    ADD CONSTRAINT chk_bill_user_storage_domain_id
+    CHECK (UserId IS NOT NULL OR StorageId IS NOT NULL OR DomainId IS NOT NULL);
 
 ALTER TABLE Payment
     ADD CONSTRAINT chk_payment_transaction_id
@@ -341,12 +343,6 @@ ALTER TABLE Payment
 
 ALTER TABLE Notification
     ADD CONSTRAINT chk_notification_dates
-    CHECK (TimeFrameEnd > TimeFrameStart);
-
-ALTER TABLE Bill
-    ADD CONSTRAINT chk_bill_user_storage_domain_id
-    CHECK (UserId IS NOT NULL OR StorageId IS NOT NULL OR DomainId IS NOT NULL);
-
-ALTER TABLE Notification
+    CHECK (TimeFrameEnd > TimeFrameStart),
     ADD CONSTRAINT chk_notification_user_storage_domain_id
     CHECK (UserId IS NOT NULL OR StorageId IS NOT NULL OR DomainId IS NOT NULL);

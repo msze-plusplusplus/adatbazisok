@@ -12,4 +12,6 @@
 | Statistic    | Id   |
 | Notification | Id   |
 
+> Az adatbázis kódjai megtalálhatóak a dokumentumhoz csatolt `sql` fájlokban
+
 <div class="page-break"></div>

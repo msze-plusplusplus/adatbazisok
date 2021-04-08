@@ -1,4 +1,4 @@
-### Tárolt eljárások
+### Tárolt eljárások és függvények
 
 - `GetStoragePrice` - Tárhely ár kiszámítása
 - `AreLimitsReached` - Limitek ellenőrzése
@@ -11,6 +11,8 @@
 - `GetActiveDomainNotificationsByUser` - Lekéri a felhasználóhoz tartozó domain címekhez tartozó összes aktív értesítéseknek a darabszámát
 - `GetActiveStorageNotificationsByUser` - Lekéri a felhasználóhoz tartozó web tárhyelhez tartozó összes aktív értesítéseknek a darabszámát
 - `GetNextBillId` - A jelenlrg tárolt adatok alapján meghatározza a jelenlegi év következő számla azonosítóját
+
+> A tárolt eljárások és függvények kódjai megtalálhatóak a dokumentumhoz csatolt `sql` fájlokban
 
 ### Triggerek
 
@@ -25,7 +27,12 @@
   - `User` tábla - Frissítés előtt
   - A _UserName_, _Email_, _Registration_ mezők nem szerkeszthetők
 - `AddBillId` - A számla létrehozásakor felülirja a számla azonosítót a következő helyes azonosítóval a tárolt adatok alapján
+  - `Bill` tábla - Beszúrás előtt
 - `EditBillId` - Blokkolja a számla azonosító átírását módosítás közben
+  - `Bill` tábla - Frissítés előtt
 - `EditStorage` - Meghatározza a tárhelyhez tartozó költséget módosítás után
+  - `Storage` tábla - Frissítés előtt
+
+> A triggerek kódjai megtalálhatóak a dokumentumhoz csatolt `sql` fájlokban
 
 <div class="page-break"></div>

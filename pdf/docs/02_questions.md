@@ -1,4 +1,4 @@
-## Kérdések
+## Kérdések és a hozzájuk tartozó SQL kódok
 
 1. Hány _.com_ TLD-jű domain van beregisztrálva a rendszerbe?
 
